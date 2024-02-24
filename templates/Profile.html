@@ -1,0 +1,237 @@
+{% load static%}
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://kit.fontawesome.com/8ba53d469b.js" crossorigin="anonymous"></script>
+
+  <title>Document</title>
+  <style>
+    * {
+  box-sizing: border-box;
+  outline: none;
+}
+body {
+  margin: 0;
+  font-family: Sans-serif;
+  overflow: hidden;
+}
+.dashboard {
+  height: 100vh;
+  display: flex;
+}
+.left {
+  height: 100%;
+  display: flex;
+}
+.sidebar {
+  width: 80px;
+  height: 100%;
+  background-image: linear-gradient(
+    -225deg,
+    #5271c4 0%,
+    #b19fff 48%,
+    #eca1fe 100%
+  );
+  display: flex;
+}
+.wrapper {
+  padding: 0 25px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.items {
+  margin-top: 50px;
+}
+
+.items > img {
+  margin-bottom: 25px;
+}
+
+.profile > img {
+  border-radius: 50%;
+  width: 305x;
+  height: 35px;
+  border: 1px solid white;
+}
+.profile {
+  margin-top: auto;
+}
+.menu {
+  margin-top: 20px;
+}
+.navigation {
+  width: 270px;
+  border-right: 1px solid #ddd;
+}
+.abilan > img {
+  width: 120px;
+  margin-bottom: 30px;
+  margin-left: -8px;
+}
+.icon click{
+
+}
+.wrapper2 {
+  padding: 0 25px;
+  height: 100%;
+  overflow: auto;
+}
+
+.compose {
+  width: 150px;
+  text-align: center;
+  height: 50px;
+  border-radius: 13px;
+  border: 1px solid;
+  background-image: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  font-size: 16px;
+  padding-left: 20px;
+  position: relative;
+}
+.folders {
+  margin-top: 30px;
+  color: #b8b8b8;
+  font-size: 14px;
+}
+.folder-icons {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+.icon1{
+ font-size:30px;
+}
+.icon-name1 {
+  margin-left: 10px;
+  color: #8b47a9;
+}
+.icon{
+    font-size:20px;
+    color:rgb(244, 9, 127);
+    margin-top:20px;
+    font-size:40px;
+    }
+
+.profile-picture{
+
+      margin-top:50px;
+}
+
+
+
+  </style>
+</head>
+<body>
+
+<div class="dashboard">
+  <div class="left">
+    <div class="sidebar">
+      <div class="wrapper">
+        <div class="menu">
+          <img src="https://i.ibb.co/B4Dn7CT/menu.png" />
+        </div>
+        <div class="items">
+
+        </div>
+        <div class="profile">
+        </div>
+      </div>
+    </div>
+    <div class="navigation">
+      <div class="wrapper2">
+        <div class="abilan">
+<!--         <i class="fa fa-mouse-pointer" aria-hidden="true"></i>-->
+
+          <div class="icon">ClickCharms</div>
+        </div>
+
+<!--        <button class="compose">-->
+<!--         <span class="plus">-->
+            </span></button>
+        <div class="folders"></div>
+        <div class="folder-icons">
+          <div class="icon1">
+          </div>
+<!--          <div class="icon-name1">Inbox-->
+<!--            <button class="buton-span"> 20-->
+<!--          </button></div>-->
+        </div>
+        <div class="folder-icons">
+          <div class="icon1">
+            <i class="fa fa-user" aria-hidden="true"></i>
+
+          </div>
+          <div class="icon-name">Profile</div>
+        </div>
+          <br>
+        <div class="folder-icons">
+          <div class="icon1">
+            <i class="fa fa-address-book-o" aria-hidden="true"></i>
+
+          </div>
+            <a href="/address"><div class="icon-name">Address</div></a>
+        </div>
+         <br>
+        <div class="folder-icons">
+          <div class="icon1">
+         <i class="fa fa-heart" aria-hidden="true"></i>
+          </div>
+            <a href="/wishlist"><div class="icon-name">Wishlist</div></a>
+        </div>
+          <br>
+        <div class="folder-icons">
+          <div class="icon1">
+          <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+          </div>
+            <a href="/cart"><div class="icon-name">Cart</div></a>
+        </div>
+          <br>
+        <div class="folder-icons">
+          <div class="icon1">
+          <i class="fa fa-sign-out" aria-hidden="true"></i>
+          </div>
+          <div class="icon-name">Logout</div>
+        </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+			<div class="profile-container">
+
+                {% for x in profile %}
+
+
+				<div class="profile-picture">
+					<img src="{{  image.Image.url }}"  height="200px" width="200px" >
+				</div>
+				<div class="profile-info">
+
+					<h1 style="font-weight: 600;">{{x.Username}}</h1>
+                    {% endfor %}
+				</div>
+
+
+			</div>
+
+
+
+		</div>
+	</div>
+
+
+</body>
+</html>

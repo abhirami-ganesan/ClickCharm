@@ -1,0 +1,440 @@
+<!--{% load static %}-->
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Girls</title>-->
+<!--    <link  rel="stylesheet" href="{% static 'css/toys.css' %}">-->
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">-->
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">-->
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha384-dfDw0BO6jbY5UBPIe3W7jASzFz5SXM4PoLMT1Z9ZqY4UZqZbVoFFlJ7A/KW1mCiR" crossorigin="anonymous">-->
+<!--    <style>-->
+<!--        .navbar{-->
+<!--    background-color:white;-->
+
+<!--    width:100%;-->
+<!--    height:60px;-->
+<!--}-->
+<!--.navbar-brand{-->
+<!--    margin-top: 10px;-->
+<!--    margin-left: 30px;-->
+<!--    font-size: 50;-->
+<!--    color: rgb(243, 9, 126);-->
+<!--    font-weight: bold;-->
+<!--}-->
+<!--#mode{-->
+<!--    color: rgb(243, 9, 126);-->
+<!--    font-size: 50px;-->
+<!--    font-family: Arial;-->
+
+
+<!--}-->
+<!--.nav-link{-->
+<!--    margin-top: 10px;-->
+<!--    font-size: 20px;-->
+
+<!--}-->
+<!--#Home{-->
+<!--    color: black;-->
+<!--}-->
+<!--#About{-->
+<!--    color: black;-->
+<!--}-->
+<!--#navbarDropdown{-->
+<!--    color: black;-->
+<!--}-->
+<!--#Review{-->
+<!--    color: black;-->
+<!--}-->
+<!--#Contact{-->
+<!--    color: black;-->
+<!--}-->
+<!--#search{-->
+<!--    margin-right: 50px;-->
+<!--}-->
+
+<!--.navbar-input.id{-->
+<!--    margin-left:20px;-->
+<!--}-->
+<!--.nav-item{-->
+<!--    font-size: 15px;-->
+<!--    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;-->
+<!--    color: white;-->
+<!--    justify-content: space-between;-->
+<!--    margin-top: 4%;-->
+<!--}-->
+<!--body{-->
+<!--    margin:0;-->
+<!--    font-family: sans-serif;-->
+<!--    background: White;-->
+
+<!--}-->
+<!--h3{-->
+<!--    text-align: center;-->
+<!--    font-size: 30px;-->
+<!--    margin: 0;-->
+<!--    padding-top: 10px;-->
+
+<!--}-->
+<!--a{-->
+<!--    text-decoration: none;-->
+<!--}-->
+<!--.gallery{-->
+<!--    display: flex;-->
+<!--    flex-wrap: wrap;-->
+<!--    justify-content: center;-->
+<!--    align-items: center;-->
+<!--    margin: 50px 0;-->
+<!--}-->
+<!--.content{-->
+<!--    width:20%;-->
+<!--    margin:15px;-->
+<!--    box-sizing: border-box;-->
+<!--    text-align: center;-->
+<!--    border-radius:20px;-->
+<!--    cursor: pointer;-->
+<!--    padding-top: 10px;-->
+<!--&lt;!&ndash;    box-shadow: 0 14px 28px rgba(0,0,0, 25),0 10px 10px rgba(0,0,0, 22);&ndash;&gt;-->
+<!--    transition: .4s;-->
+<!--    background: #f2f2f2;-->
+<!--}-->
+<!--.content:hover{-->
+<!--    box-shadow: 0 3px 6px rgba(0,0,0,0.16),-->
+<!--    0 3px 6px rgba(0,0,0,0.23);-->
+<!--    transition: translate(0px,-8);-->
+<!--}-->
+<!--img{-->
+<!--    width: 200px;-->
+<!--    height: 200px;-->
+<!--    text-align: center;-->
+<!--    margin: 0 auto;-->
+<!--    display:#fff;-->
+<!--}-->
+<!--p{-->
+<!--    text-align:center;-->
+<!--    color: #b2bec3;-->
+<!--    padding-top: 0 8px;-->
+
+<!--}-->
+<!--h6{-->
+<!--    font-size: 26px;-->
+<!--    text-align: center;-->
+<!--    color: #222f3e;-->
+<!--    margin: 0;-->
+<!--}-->
+<!--ul{-->
+<!--    list-style: none;-->
+<!--    display: flex;-->
+<!--    justify-content: center;-->
+<!--    align-items: center;-->
+<!--    padding: 0;-->
+
+<!--}-->
+<!--li{-->
+<!--    padding-top: 5px;-->
+
+<!--}-->
+<!--.fa{-->
+<!--    font-size: 26px;-->
+<!--    transition: .4s;-->
+<!--}-->
+<!--.checked{-->
+<!--    color: rgb(240, 9, 124);-->
+<!--}-->
+<!--.fa:hover{-->
+<!--    transform: scale(1.3);-->
+<!--    transition: .6s;-->
+<!--}-->
+<!--button{-->
+<!--    text-align: center;-->
+<!--    font-size: 24px;-->
+<!--    color: #fff;-->
+<!--    width: 100%;-->
+<!--    padding: 15px;-->
+<!--    border: 0;-->
+<!--    outline: none;-->
+<!--    cursor: pointer;-->
+<!--    margin-top: 5px;-->
+<!--    border-bottom-right-radius:20px;-->
+<!--    border-bottom-left-radius:20px ;-->
+
+<!--}-->
+<!--.buy-1{-->
+<!--    background:rgb(240, 9, 124);-->
+
+<!--}-->
+<!--.buy-2{-->
+<!--    background: rgb(240, 9, 124);-->
+<!--}-->
+<!--.buy-3{-->
+<!--    background: rgb(240, 9, 124);-->
+<!--}-->
+<!--.buy-4{-->
+<!--    background: rgb(240, 9, 124);-->
+<!--}-->
+<!--@media(max-width:1000px) {-->
+<!--    .content{-->
+<!--        width:45%;-->
+<!--    }-->
+
+<!--}-->
+<!--@media(max-width:750px) {-->
+<!--    .content{-->
+<!--        width:100%;-->
+<!--    }-->
+
+<!--}-->
+
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--    <nav class="navbar navbar-expand-lg d-flex ">-->
+<!--        <div class="container-fluid">-->
+
+
+<!--          <a class="navbar-brand" href="#" id="mode">ClickCharms</a>-->
+<!--          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--            <span class="navbar-toggler-icon"></span>-->
+<!--          </button>-->
+<!--          <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+<!--            <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="space">-->
+
+<!--              <li class="nav-item ">-->
+<!--                <a class="nav-link ms-5"  aria-current="page" href="" >Home</a>-->
+<!--              </li>-->
+<!--              <li class="nav-item ms-5">-->
+<!--                <a class="nav-link" href="#"  >Brand</a>-->
+<!--              </li>-->
+<!--              <li class="nav-item dropdown">-->
+<!--                <a class="nav-link ms-5 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--                  Category-->
+<!--                </a>-->
+<!--                <ul class="dropdown-menu " aria-labelledby="navbarDropdown">-->
+<!--                  <li><a class="dropdown-item" href="#">Girls</a></li>-->
+<!--                  <li><a class="dropdown-item" href="#">Boys</a></li>-->
+<!--                  <li><a class="dropdown-item" href="#">Toys & Games</a></li>-->
+<!--                  <li><a class="dropdown-item" href="#">Accessories</a></li>-->
+<!--                  <li><a class="dropdown-item" href="#">Footwear</a></li>-->
+<!--                  <li><a class="dropdown-item" href="#">Stationary</a></li>-->
+
+<!--                </ul>-->
+<!--              </li>-->
+<!--              <li class="nav-item">-->
+<!--                <a class="nav-link ms-5" href="#" >Review</a>-->
+<!--              </li>-->
+<!--              <li class="nav-item">-->
+<!--                <a class="nav-link ms-5" href="#" >Contact</a>-->
+<!--              </li>-->
+
+<!--                </li>-->
+<!--            </ul>-->
+
+<!--          </div>-->
+
+
+<!--                </li>-->
+<!--            </ul>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </nav>-->
+<!--       <br>-->
+<!--       <br>-->
+<!--    <h5 class="text-center">GIRLS CLOTHING</h5>-->
+
+<!--  <div class="container">-->
+<!--<div class="row row-cols-1 row-cols-md-3 g-4">-->
+<!--  {% for x in girls %}-->
+<!--  <div class="col">-->
+<!--    <div class="card">-->
+
+<!--          {% for image in x.images.all|slice:":1" %}-->
+
+<!--      <img src="{{ image.images.url }}" class="card-img-top" height="450px">-->
+
+<!--          {% endfor %}-->
+<!--      <div class="card-body">-->
+<!--        <h5 class="card-title">{{x.Product_title}}</h5>-->
+<!--        <p class="card-text">{{x.Product_description}}</p>-->
+<!--        <p class="card-text">{{x.Quantity}}</p>-->
+
+<!--        <p class="card-text">{{x.Price}}</p>-->
+
+
+
+<!--                    <a href="/product/{{ x.Product_id }}"  class="btn btn-yellow" id="shop" >Shop Now</a>-->
+<!--        <a href="/addwishlist"><button type="submit"> <i class="fa fa-heart-o" aria-hidden="true"></i>Wishlist</button>-->
+<!--        </a>-->
+
+
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <br>-->
+<!--  <br>-->
+<!-- {% endfor %}-->
+<!--  <br><br>-->
+
+
+<!--  </div>-->
+<!--</div>-->
+<!--  <br><br>-->
+<!--      <h5 class="text-center">GIRLS CLOTHING</h5>-->
+
+<!--       <div class="gallery">-->
+<!--         <div class="content">-->
+<!--             {% for x in girls %}-->
+<!--             {% for image in x.images.all|slice:":1" %}-->
+<!--                <img src="{{ image.images.url }}" class="card-img-top" height="450px">-->
+
+
+
+<!--          {% endfor %}-->
+<!--        <h5 class="card-title">{{x.Product_title}}</h5>-->
+<!--        <p class="card-text">{{x.Product_description}}</p>-->
+<!--        <p class="card-text">{{x.Quantity}}</p>-->
+
+<!--        <p class="card-text">{{x.Price}}</p>-->
+
+
+<!--            <ul>-->
+<!--              <i class="bi bi-star-fill"></i>-->
+<!--              <i class="bi bi-star-fill"></i>-->
+<!--              <i class="bi bi-star-fill"></i>-->
+<!--              <i class="bi bi-star-half"></i>-->
+<!--              <i class="bi bi-star"></i>-->
+
+<!--            </ul>-->
+<!--                    <a href="/product/{{ x.Product_id }}"  class="btn btn-yellow" id="shop" >Shop Now</a>-->
+<!--        <a href="/addwishlist"><button type="submit"> <i class="fa fa-heart-o" aria-hidden="true"></i>Wishlist</button>-->
+<!--        </a>-->
+<!--             {% endfor %}-->
+
+<!--         </div>-->
+
+
+<!--         <div class="content">-->
+<!--            <img src="{% static 'images/girls2.jpg' %}" height="353px" >-->
+<!--            <h3>Girls Floral dress</h3>-->
+<!--            <p>A woven cami dress</p>-->
+<!--            <h6>Rs.799.00</h6>-->
+<!--            <ul>-->
+<!--              <i class="bi bi-star-fill"></i>-->
+<!--              <i class="bi bi-star-fill"></i>-->
+<!--              <i class="bi bi-star-fill"></i>-->
+<!--              <i class="bi bi-star-fill"></i>-->
+<!--              <i class="bi bi-star"></i>-->
+
+<!--            </ul>-->
+<!--            <button class="buy-2">Buy Now</button>-->
+<!--       </div>-->
+<!--         <div class="content">-->
+<!--            <img src="{% static 'images/girls8.jpg' %}" height="353px" >-->
+<!--            <h3> Girls Cotton dress</h3>-->
+<!--            <p>girls fit and fair cotton dress for kids</p>-->
+<!--            <h6>Rs.599.00</h6>-->
+<!--            <ul>-->
+<!--              <i class="bi bi-star-fill"></i>-->
+<!--              <i class="bi bi-star-fill"></i>-->
+<!--              <i class="bi bi-star-fill"></i>-->
+<!--              <i class="bi bi-star-fill"></i>-->
+<!--              <i class="bi bi-star"></i>-->
+
+
+<!--            </ul>-->
+<!--            <button class="buy-3">Buy Now</button>-->
+
+<!--         </div>-->
+<!--         <div class="content">-->
+<!--            <img src="{% static 'images/girls4.webp' %}" height="353px" >-->
+<!--            <h3>Sleepwear</h3>-->
+<!--            <p>Girls Silk Satin Pajamas Pyjamas</p>-->
+<!--            <h6>Rs.400.00</h6>-->
+<!--            <ul>-->
+<!--              <i class="bi bi-star-fill"></i>-->
+<!--              <i class="bi bi-star-fill"></i>-->
+<!--              <i class="bi bi-star-fill"></i>-->
+<!--              <i class="bi bi-star-fill"></i>-->
+<!--              <i class="bi bi-star-half"></i>-->
+
+<!--            </ul>-->
+<!--            <button class="buy-4">Buy Now</button>-->
+
+<!--         </div>-->
+
+
+<!--       </div>-->
+<!--       <div class="gallery">-->
+<!--        <div class="content">-->
+<!--           <img src="{% static 'images/girls5.jpg' %}" height="353px" >-->
+<!--           <h3>Ethnic Wear</h3>-->
+<!--           <p>SAKA DESIGNS Dhoti Kurta For Girls</p>-->
+<!--           <h6>Rs.1500.00</h6>-->
+<!--           <ul>-->
+<!--            <i class="bi bi-star-fill"></i>-->
+<!--            <i class="bi bi-star-fill"></i>-->
+<!--            <i class="bi bi-star-fill"></i>-->
+<!--            <i class="bi bi-star-fill"></i>-->
+<!--            <i class="bi bi-star-half"></i>-->
+
+<!--           </ul>-->
+<!--           <button class="buy-1">Buy Now</button>-->
+<!--        </div>-->
+<!--        <div class="content">-->
+<!--           <img src="{% static 'images/girls7.jpg' %}" height="353px" >-->
+<!--           <h3>Girls Footwear</h3>-->
+<!--           <p>FLUFFY SLIDERS FAUX FUR COMFY</p>-->
+<!--           <h6>Rs.500.00</h6>-->
+<!--           <ul>-->
+<!--            <i class="bi bi-star-fill"></i>-->
+<!--            <i class="bi bi-star-fill"></i>-->
+<!--            <i class="bi bi-star-fill"></i>-->
+<!--            <i class="bi bi-star-fill"></i>-->
+<!--            <i class="bi bi-star"></i>-->
+
+
+<!--           </ul>-->
+<!--           <button class="buy-2">Buy Now</button>-->
+
+<!--        </div>-->
+<!--        <div class="content">-->
+<!--           <img src="{% static 'images/girls3.jpg' %}" height="353px" >-->
+<!--           <h3>Little girl dresses</h3>-->
+<!--           <p>Children's Special Occasion Clothing</p>-->
+<!--           <h6>Rs.799.00</h6>-->
+<!--           <ul>-->
+<!--            <i class="bi bi-star-fill"></i>-->
+<!--            <i class="bi bi-star-fill"></i>-->
+<!--            <i class="bi bi-star-fill"></i>-->
+<!--            <i class="bi bi-star-half"></i>-->
+<!--            <i class="bi bi-star"></i>-->
+
+<!--           </ul>-->
+<!--           <button class="buy-3">Buy Now</button>-->
+
+<!--        </div>-->
+<!--        <div class="content">-->
+<!--           <img src="{% static 'images/girls6.jpg' %}" height="353px" >-->
+<!--           <h3>Kids fashion </h3>-->
+<!--           <p>Frill Trim Flounce Sleeve Shirred Crop Top </p>-->
+<!--           <h6>Rs.1359.00</h6>-->
+<!--           <ul>-->
+<!--            <i class="bi bi-star-fill"></i>-->
+<!--            <i class="bi bi-star-fill"></i>-->
+<!--            <i class="bi bi-star-fill"></i>-->
+<!--            <i class="bi bi-star-fill"></i>-->
+<!--            <i class="bi bi-star-half"></i>-->
+
+<!--           </ul>-->
+<!--           <button class="buy-4">Buy Now</button>-->
+
+<!--        </div>-->
+
+
+<!--      </div>-->
+
+<!--      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/distz/js/bootstrap.bundle.min.js"></script>-->
+<!--    </body>-->
+<!--    </html>-->
