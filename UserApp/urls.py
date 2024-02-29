@@ -8,14 +8,18 @@ urlpatterns=[
     path('', views.myhome, name="home"),
     path('product/<int:id>',views.Product, name="product"),
     path('login/',views.login,name="login"),
-    path('addcart',views.addcart,name="addcart"),
+    path('addcart/<int:id>',views.addcart,name="addcart"),
     # path('buynow/',views.buynow,name="buynow"),
     path('category/<int:id>',views.category,name="category"),
     path('profile/',views.profile,name="profile"),
     path('search/',views.search,name="search"),
     path('offer',views.offer,name="offer"),
     path('brand',views.brand),
-
+    path('logout/',views.logout),
+    path('address/',views.address),
+    path('addressview/',views.addressview),
+    path('editaddress/<int:id>',views.editaddress),
+    path('buy', views.buy),
 
 ]
 

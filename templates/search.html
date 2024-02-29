@@ -58,7 +58,7 @@
 
        <form method="POST">
              {% csrf_token %}
-        <input type="search" name="search" id="search" placeholder="search">
+        <input type="search" name="search" id="search" value="{{searchh}}" placeholder="search">
          <button type="submit" class="btn btn primary">Search</button>
          </form>
 
@@ -66,6 +66,46 @@
     </div>
   </div>
 </nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+       <form method="post" >
+    {% csrf_token %}
+    <select   name="selected_id"  onchange="this.form.submit()">
+              <option value="#" selected disabled>Discount Range</option>
+                  <option value="under30">Under 30%</option>
+                  <option value="under40">Under 40%</option>
+                  <option value="under50">Under 50%</option>
+                  <option value="under60">Under 60%</option>
+                  <option value="under70">Under 70%</option>
+          </select>
+
+
+  </form>
+        </div>
+
+        <div class="col">
+
+ <form method="post" >
+    {% csrf_token %}
+    <select   name="select"  onchange="this.form.submit()">
+              <option value="#" selected disabled>Price</option>
+                  <option value="under300">Under 300</option>
+                  <option value="under500">Under 500</option>
+                  <option value="under800">Under 800</option>
+                  <option value="under1000">Under 1000</option>
+                  <option value="under1500">Under 1500</option>
+                  <option value="under1500">Under 2000</option>
+
+          </select>
+
+
+  </form>
+    </div>
+    </div>
+</div>
+    <br><br>
 <div class="container">
 <div class="row row-cols-1 row-cols-md-3 g-4">
   {% for x in products %}

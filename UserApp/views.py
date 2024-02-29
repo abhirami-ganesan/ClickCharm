@@ -11,7 +11,7 @@ def login(request):
         password = request.POST.get('password')
         data = UserModel.objects.filter(Username=username, Password=password)
 
-        if data is not None:
+        if data:
             print(username)
             request.session['data'] = username
             print('login successfully..............')
@@ -38,16 +38,23 @@ def myhome(request):
         Main_category_id=MainCategoryModel.objects.get(Main_category='Footwear'))
 
     dataa = MainCategoryModel.objects.all()
+    user = 'no user'
 
-    return render(request, 'Home.html',
-                  {'products': data, 'categories': dataa, 'girls': girls, 'boys': boys, 'toys': toys,
-                   'accessories': accessories, 'stationary': stationary, 'footwear': footwear})
+    if 'data' in request.session:
+        current_user = request.session['data']
+        print(current_user)
+        user = UserModel.objects.get(Username=current_user)
+
+
+
+    return render(request, 'Home.html',{'products': data,'user':user,'categories': dataa, 'girls': girls, 'boys': boys, 'toys': toys, 'accessories': accessories, 'stationary': stationary, 'footwear': footwear})
 
 
 def search(request):
     print("rrrrrrrrr")
     data = ProductModel.objects.prefetch_related('images').all()
     if request.method == 'POST':
+
         search = request.POST.get('search')
         if search:
             data = ProductModel.objects.filter(
@@ -67,9 +74,36 @@ def Product(request, id):
 
 def category(request, id):
     data = ProductModel.objects.prefetch_related('images').filter(Main_category_id=id)
+
     print(data.values())
+
+    if request.method == 'POST':
+        search = request.POST.get('search')
+        if 'selected_price' in request.POST:
+            print(int(request.POST['selected_price']))
+            data = ProductModel.objects.filter(Price=int(request.POST['selected_price']))
+        if 'selected_discount' in request.POST:
+            print(int(request.POST['selected_discount']))
+            data = OfferModel.objects.filter(Discount=int(request.POST['selected_discount']))
+        print(data.values())
+
     return render(request, "Category.html", {'products': data})
 
+
+# def category(request, main_category_id):
+#
+#     if request.method == 'POST':
+#         search = request.POST.get('search')
+#         if 'selected_price' in request.POST:
+#             print(int(request.POST['selected_price']))
+#             data = ProductModel.objects.filter(Price__lt=int(request.POST['selected_price']))
+#         if 'selected_discount' in request.POST:
+#             print(int(request.POST['selected_discount']))
+#             data = OfferModel.objects.filter(OfferModel_discount_lt=int(request.POST['selected_discount']))
+#         data = data.prefetch_related('images')
+#         print(data.values())
+#     return render(request, 'category.html', {'category': data,  'products': data, })
+#
 
 # def addcart(request,id):
 #     if 'data' in request.session:
@@ -99,16 +133,48 @@ def profile(request):
     else:
         return redirect('/login')
 
+def Address(request):
+    if 'data' in request.session:
+        username = request.session.get("data")
 
-def addcart(request):
+        if request.method == "POST":
+            house_name = request.POST.get("House_Name")
+            house_number = request.POST.get("House_Number")
+            place = request.POST.get("Place")
+            post = request.POST.get("Post")
+            pin = request.POST.get("Pincode")
+            landmark = request.POST.get("Landmark")
+            print(house_name, house_number, place, post, pin, landmark)
+            dataa= AddressModel()
+            dataa.House_Name = house_name
+            dataa.House_Number = house_number
+            dataa.Place = place
+            dataa.Post = post
+            dataa.Pincode = pin
+            dataa.Landmark = landmark
+            dataa.User_id = UserModel.objects.get(Username=username)
+            dataa.save()
+            return redirect('/')
+
+        return render(request, "Address.html")
+    else:
+        return redirect("/")
+
+
+def address(request):
+    return render(request,'Address.html')
+
+
+def addcart(request,id):
     print("sdfghj")
 
     if 'data' in request.session:
         print("aaaaaaaaaaaaaaaaaaaaaa")
         username = request.session.get('data')
         data = CartModel.objects.filter(User_id=UserModel.objects.get(Username=username))
+        dataa = CartModel.objects.filter(Product_id=ProductModel.objects.get(Product_id=id))
         print(data.values())
-        return render(request, 'cart.html', {'cart': data})
+        return render(request, 'cart.html', {'cart': data,'cart':dataa})
     else:
         return redirect('/login')
 
@@ -117,14 +183,78 @@ def addcart(request):
 #     return render(request,'hhome.html')
 
 def offer(request):
-    data = OfferEventModel.objects.filter(Offer_Name='Holi')
-    dataa = OfferModel.objects.filter(Offer_id=OfferEventModel.objects.get(Offer_Name='Holi'))
-    print(data.values())
+    events = OfferEventModel.objects.all()
 
-    return render(request, 'offer.html', {'events': data, 'offer': dataa})
+    return render(request, 'offer.html', {'events': events})
 
 
 def brand(requset):
     data = BrandModel.objects.all()
 
     return render(requset, 'Brand.html', {'brands': data})
+
+def addressview(request):
+    print("sbzxbb")
+    if 'data' in request.session:
+        print("aaaaaaaaaaaaaaaaaaaaaa")
+        user=request.session['data']
+        mydata= AddressModel.objects.filter(User_id=UserModel.objects.get(Username=user))
+        print(mydata)
+        return render(request,'addressview.html',{'mydata':mydata})
+    else:
+        return redirect('/login')
+
+
+def editaddress(request,id):
+    if 'data' in request.session:
+        username = request.session.get("data")
+        dataaa=AddressModel.objects.filter()
+
+        if request.method == "POST":
+            house_name = request.POST.get("House_Name")
+            house_number = request.POST.get("House_Number")
+            place = request.POST.get("Place")
+            post = request.POST.get("Post")
+            pin = request.POST.get("Pincode")
+            landmark = request.POST.get("Landmark")
+            print(house_name, house_number, place, post, pin, landmark)
+            dataa= AddressModel.object.get(Address_id=id)
+            dataa.House_Name = house_name
+            dataa.House_Number = house_number
+            dataa.Place = place
+            dataa.Post = post
+            dataa.Pincode = pin
+            dataa.Landmark = landmark
+            dataa.User_id = UserModel.objects.get(Username=username)
+            dataa.save()
+            return redirect('/')
+
+        return render(request, "Address.html",{'dataaa':dataaa})
+    else:
+        return redirect("/")
+
+
+# def view_address(request):
+#     print('address Function called')
+#
+#     if 'user' in request.session:
+#         # user = request.session['user ']
+#         data = UserAddress.objects.filter(user_id=User.objects.get(email=request.session['user']))
+#         return render(request, 'view_address.html', {'data': data})
+#     else:
+#         return redirect('/login')
+
+
+def logout(request):
+    try:
+        del request.session['data']
+    except:
+        return redirect('login')
+    return redirect('login')
+
+
+
+def buy(request):
+
+    return render(request,'Buy.html')
+

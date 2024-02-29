@@ -11,6 +11,51 @@
         <script src="https://kit.fontawesome.com/8ba53d469b.js" crossorigin="anonymous"></script>
 <style>
 
+/* Define the custom class for the pista-colored button */
+.pista-btn button {
+    background-color: #AEDB9F; /* Adjust the color code to match the desired pista color */
+    color: white; /* Text color */
+    border-radius: 15px; /* Adjust the border radius to create a rounded shape */
+    padding: 10px 20px; /* Adjust padding for better appearance */
+    border: none; /* Remove default button border */
+    cursor: pointer; /* Add cursor pointer on hover */
+    transition: background-color 0.3s ease; /* Add transition for smoother hover effect */
+}
+
+.pista-btn button:hover {
+    background-color: #5d7a6d; /* Change the background color on hover if needed */
+}
+
+.pista-btn button:hover {
+    background-color: #AEDB9F; /* Change the background color on hover if needed */
+}
+
+
+/* Define the animation for the heart icon */
+@keyframes heart {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+/* Define the heart animation class */
+.heart-animation {
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    color: #ff3b30; /* Adjust the color of the heart icon */
+    animation: heart 0.8s ease;
+}
+
 </style>
 </head>
 <body>
@@ -47,6 +92,21 @@
         <li class="nav-item ms-5">
           <a class="nav-link active" href="/profile"  aria-disabled="page">BAG</a>
         </li>
+<!--          <li class="nav-item ms-5">-->
+<!--          <a class="nav-link" href="/login">Login</a>-->
+<!--        </li>-->
+      {% if user == 'no use' %}
+         <a class="nav-link" href="/login" style="margin-left:100px">Login</a>
+
+          {% else %}
+        <a class="nav-link" href="/logout" style="margin-left:100px">Logout</a>
+          <h5><span style="color:pink;">{{user.Username}}</span></h5>
+
+
+
+
+
+           {% endif %}
       </ul>
 
        <form method="POST" action="/search/">
@@ -57,13 +117,15 @@
     </div>
   </div>
 </nav>
-<div id="section1" class="img-fluid">
-    <img src="{% static 'images/coverhome.jpg' %}"  >
+<div id="section1" >
+  <img src="{% static 'images/coverrr.png' %}" alt="Image Description" width="100%" height="500px">
+
+
 </div>
 
 <br>
   <a href="{% url 'offer' %}">
-        <img src="{% static 'images/summer.jpg' %}" alt="Image Description" width="100%" height="300px">
+        <img src="{% static 'images/newsalesss.jpg' %}" alt="Image Description" width="100%" height="300px">
     </a>
 <br>
 <br>
@@ -113,7 +175,7 @@
 
           {% for image in x.images.all|slice:":1" %}
 
-      <img src="{{ image.images.url }}" class="card-img-top" >
+      <img src="{{ image.images.url }}" class="card-img-top" height="350px" >
 
           {% endfor %}
       <div class="card-body">
@@ -126,8 +188,11 @@
 
 
                     <a href="/product/{{ x.Product_id }}"  class="btn btn-yellow" id="shop" >Shop Now</a>
-        <a href="/addwishlist"><button type="submit"> <i class="fa fa-heart-o" aria-hidden="true"></i>Wishlist</button>
-        </a>
+        <a href="" class="pista-btn" id="wishlistButton">
+    <button type="submit"> <i class="fa fa-heart-o" aria-hidden="true"></i>  Wishlist</button>
+
+</a>
+
 
 
       </div>
@@ -494,6 +559,7 @@
   </div>
   <!-- Copyright -->
 </footer>
+
 <!-- Footer -->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>

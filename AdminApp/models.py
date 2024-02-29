@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 
 
@@ -9,8 +10,6 @@ class AdminModel(models.Model):
     phone_number = models.CharField(max_length=10)
     email = models.EmailField(max_length=30)
     password = models.CharField(max_length=20)
-
-
 
     class Meta:
         db_table = "Admin_table"
@@ -47,9 +46,9 @@ class SubSubCategoryModel(models.Model):
     def __str__(self):
         return self.Sub_sub_category
 
-
     class Meta:
         db_table = "Sub_sub_category_table"
+
 
 class BrandModel(models.Model):
     Brand_id = models.IntegerField(primary_key=True, default=None)
@@ -69,11 +68,9 @@ class ProductModel(models.Model):
     Product_description = models.CharField(max_length=50)
     Quantity = models.IntegerField(null=True)
     Price = models.IntegerField()
-    status = models.CharField(max_length=50,default="Active")
-    Main_category_id = models.ForeignKey(MainCategoryModel, on_delete=models.CASCADE,null=True)
-    Brand_id = models.ForeignKey(BrandModel, on_delete=models.CASCADE,null=True)
-
-
+    status = models.CharField(max_length=50, default="Active")
+    Main_category_id = models.ForeignKey(MainCategoryModel, on_delete=models.CASCADE, null=True)
+    Brand_id = models.ForeignKey(BrandModel, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.Product_title
@@ -89,7 +86,6 @@ class ProductImageModel(models.Model):
 
     # Admin_id = models.ForeignKey(AdminModel, on_delete=models.CASCADE)
 
-
     class Meta:
         db_table = "Product_image_table"
 
@@ -98,7 +94,7 @@ class VariantProductModel(models.Model):
     Variant_product_id = models.IntegerField(primary_key=True, default=None)
     Variant_product_name = models.CharField(max_length=50)
     Size = models.IntegerField()
-    Quantity = models.CharField(max_length=50,null=True)
+    Quantity = models.CharField(max_length=50, null=True)
     Color = models.CharField(max_length=50)
     Occasion = models.CharField(max_length=50)
     Neck = models.CharField(max_length=50)
@@ -110,6 +106,7 @@ class VariantProductModel(models.Model):
     Bottom_Pattern = models.CharField(max_length=50)
     price = models.CharField(max_length=50)
     Product_id = models.ForeignKey(ProductModel, on_delete=models.CASCADE)
+
     # Admin_id = models.ForeignKey(AdminModel, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -119,18 +116,16 @@ class VariantProductModel(models.Model):
         db_table = "Variant_Product_table"
 
 
-
-
-
 class OfferEventModel(models.Model):
     Offer_id = models.IntegerField(primary_key=True, default=None)
     Offer_Name = models.CharField(max_length=50)
     Start_Date = models.DateField()
     End_Date = models.DateField()
+    images = models.ImageField(upload_to='images/',null=True)
+
 
     def __str__(self):
         return self.Offer_Name
-
 
     class Meta:
         db_table = "Offer_Event_table"
@@ -141,8 +136,6 @@ class OfferModel(models.Model):
     Discount = models.IntegerField()
     Offer_id = models.ForeignKey(OfferEventModel, on_delete=models.CASCADE)
     Product_id = models.ForeignKey(ProductModel, on_delete=models.CASCADE)
-
-
 
     class Meta:
         db_table = "Offer_table"
@@ -169,4 +162,3 @@ class CityModel(models.Model):
 
     class Meta:
         db_table = "City_table"
-
