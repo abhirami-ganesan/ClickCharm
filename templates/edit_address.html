@@ -230,39 +230,40 @@ html, body {
             <div class="form-holder">
                 <div class="form-content">
                     <div class="form-items">
-                        <h3>Address</h3>
+                        <h3>Update Your Address</h3>
                         <p>Fill in the data below.</p>
-                        <form method="POST"  >
+                        <form method="POST" >
                           {% csrf_token %}
+							{% for x in dataa %}
 
 
                             <div class="col-md-12">
-                               <input class="form-control" type="text" name="housename" placeholder="enter housname" required>
+                               <input class="form-control" type="text" name="housename" value="{{x.House_Name}}" required>
                                <div class="valid-feedback">House_number</div>
                             </div>
 
                             <div class="col-md-12">
-                                <input class="form-control" type="text" name="houseno" placeholder="enter house number" required>
+                                <input class="form-control" type="text" name="houseno" value="{{x.House_Number}}" required>
                                  <div class="valid-feedback">House_No</div>
 
                             </div>
                             <div class="col-md-12">
-                                <input class="form-control" type="text" name="place" placeholder="enter your place" required>
+                                <input class="form-control" type="text" name="place" value="{{x.Place}}" required>
                                  <div class="valid-feedback">Place</div>
 
                             </div>
                              <div class="col-md-12">
-                                <input class="form-control" type="text" name="post" placeholder="enter your post name" required>
+                                <input class="form-control" type="text" name="post" value="{{x.Post}}" required>
                                  <div class="valid-feedback"> Post</div>
 
                             </div>
                              <div class="col-md-12">
-                                <input class="form-control" type="text" name="pin" placeholder="enter your pin" required>
+                                <input class="form-control" type="text" name="pin" value="{{x.Pincode}}" required>
                                  <div class="valid-feedback">Pin</div>
 
                             </div>
                             <div class="col-md-12">
-                                <input class="form-control" type="text" name="landmark" placeholder="enter your landmark" required>
+                                <input class="form-control" type="text" name="landmark" value="{{x.Landmark}}" required>
                                  <div class="valid-feedback">Landmark</div>
 
                             </div>
@@ -276,6 +277,7 @@ html, body {
                             <div class="form-button mt-3">
                                 <button type="submit" class="btn btn-success">Register</button>
                             </div>
+							{% endfor %}
                         </form>
                     </div>
                 </div>

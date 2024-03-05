@@ -438,3 +438,21 @@
 <!--      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/distz/js/bootstrap.bundle.min.js"></script>-->
 <!--    </body>-->
 <!--    </html>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Cart</title>
+</head>
+<body>
+    <h1>Cart Details</h1>
+    <div>
+        {% for product in user_products %}
+            <h2>{{ product.Product_title }}</h2>
+            <p>{{ product.Product_description }}</p>
+            <!-- Add more details as needed -->
+        {% endfor %}
+    </div>
+</body>
+</html>

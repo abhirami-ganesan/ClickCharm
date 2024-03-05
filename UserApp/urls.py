@@ -8,7 +8,6 @@ urlpatterns=[
     path('', views.myhome, name="home"),
     path('product/<int:id>',views.Product, name="product"),
     path('login/',views.login,name="login"),
-    path('addcart/<int:id>',views.addcart,name="addcart"),
     # path('buynow/',views.buynow,name="buynow"),
     path('category/<int:id>',views.category,name="category"),
     path('profile/',views.profile,name="profile"),
@@ -16,10 +15,14 @@ urlpatterns=[
     path('offer',views.offer,name="offer"),
     path('brand',views.brand),
     path('logout/',views.logout),
-    path('address/',views.address),
-    path('addressview/',views.addressview),
-    path('editaddress/<int:id>',views.editaddress),
-    path('buy', views.buy),
+    path('address/',views.address,name="address"),
+    path('addressview/',views.addressview,name="addressview"),
+    path('deleteaddress/<int:Address_id>',views.dlt_address,name="deleteaddress"),
+    path('mycart',views.mycart,name="mycart"),
+    path('deletecart/<int:id>',views.deletecart,name="deletecart"),
+    path('edit_address/<int:Address_id>', views.edit_address, name="edit_address"),
+    path('viewaddress',views.view_address),
+    path('view_brand/<int:id>',views.View_brand,name="view_brand"),
 
 ]
 

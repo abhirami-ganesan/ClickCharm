@@ -1,16 +1,7 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+arr=[1,2,34,567,890,65]
+# sum = arr[0]+arr[1]+arr[2]+arr[3]+arr[4]+arr[5]
+# print(sum)
+sum=(0)
+for i in arr:
+    sum = sum+i
+print(sum)

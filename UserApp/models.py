@@ -1,5 +1,6 @@
 from django.db import models
 from AdminApp.models import *
+
 # Create your models here.
 class UserModel(models.Model):
     User_id = models.AutoField(primary_key=True,default=None)
