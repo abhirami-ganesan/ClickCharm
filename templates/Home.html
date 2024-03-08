@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha384-dfDw0BO6jbY5UBPIe3W7jASzFz5SXM4PoLMT1Z9ZqY4UZqZbVoFFlJ7A/KW1mCiR" crossorigin="anonymous">
         <script src="https://kit.fontawesome.com/8ba53d469b.js" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <style>
 
 /* Define the custom class for the pista-colored button */
@@ -69,6 +71,8 @@
      height:30%;
      width:80%;
   }
+
+
 </style>
 </head>
 <body>
@@ -87,7 +91,7 @@
           <a class="nav-link active" aria-current="page" href="#" id="myhome">HOME</a>
         </li>
         <li class="nav-item ms-5">
-          <a class="nav-link" href="#">OFFER</a>
+          <a class="nav-link" href="/offer">OFFER</a>
         </li>
         <li class="nav-item dropdown ms-5">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -100,7 +104,7 @@
           </ul>
         </li>
         <li class="nav-item ms-5">
-          <a class="nav-link active" href="/profile"  aria-disabled="page">PROFILE</a>
+          <a class="nav-link active" href="/brand"  aria-disabled="page">BRAND</a>
         </li>
         <li class="nav-item ms-5">
           <a class="nav-link active" href="/profile"  aria-disabled="page">WISHLIST</a>
@@ -225,7 +229,7 @@
 <!-- {% endfor %}-->
 <!--  <br><br>-->
 
-<h4 class="text-center">GILSCLOTHING </h4>
+<h4 class="text-center">GIRLSCLOTHING </h4>
 
   <div class="container">
 <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -239,17 +243,16 @@
 
           {% endfor %}
       <div class="card-body">
+
+
         <h5 class="card-title">{{x.Product_title}}</h5>
         <p class="card-text">{{x.Product_description}}</p>
         <p class="card-text">{{x.Quantity}}</p>
-
         <p class="card-text">{{x.Price}}</p>
 
-
+        <button class="wishlist-btn" data-product-id="{{ x.Product_id }}"><i class="fa fa-heart-o"  aria-hidden="true"></i> Wishlist</button>
 
                     <a href="/product/{{ x.Product_id }}"  class="btn btn-success" id="shop" >Shop Now</a>
-        <a href="" class="pista-btn" id="wishlistButton">
-    <button type="submit"> <i class="fa fa-heart-o" aria-hidden="true"></i>  Wishlist</button>
 
 </a>
 
@@ -285,6 +288,13 @@
           {% endfor %}
       <div class="card-body">
         <h5 class="card-title">{{x.Product_title}}</h5>
+        <form method="POST">
+          {% csrf_token %}
+          <button type="submit"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+
+        </form>
+
+
         <p class="card-text">{{x.Product_description}}</p>
         <p class="card-text">{{x.Quantity}}</p>
 
@@ -293,7 +303,6 @@
 
 
                     <a href="/product/{{ x.Product_id }}"  class="btn btn-success" id="shop" >Shop Now</a>
-        <a href="/addwishlist"><button type="submit"> <i class="fa fa-heart-o" aria-hidden="true"></i>Wishlist</button>
         </a>
 
 
@@ -375,8 +384,8 @@
 
 
                     <a href="/product/{{ x.Product_id }}"  class="btn btn-yellow" id="shop" >Shop Now</a>
-        <a href="/addwishlist"><button type="submit"> <i class="fa fa-heart-o" aria-hidden="true"></i>Wishlist</button>
-        </a>
+        <button class="add-to-wishlist" data-product-id="{{ product.id }}">Add to Wishlist</button>
+
 
 
       </div>
@@ -624,6 +633,36 @@
 </footer>
 
 <!-- Footer -->
+<!-- Include jQuery library -->
+
+
+  <script>
+    $(document).ready(function() {
+  $(".wishlist-btn").click(function() {
+    var productId = $(this).data("product-id");
+    $.ajax({
+      type: "POST",
+      url: "/add-to-wishlist/",
+      data: {
+        'product_id': productId,
+        csrfmiddlewaretoken: '{{ csrf_token }}'
+      },
+      dataType: 'json',
+      success: function(data) {
+        if (data.success) {
+
+          // Change the color of the heart icon to indicate it's added to the wishlist
+          $(this).find("i").removeClass("fa-heart-o").addClass("fa-heart").css("color", "red");
+        } else {
+          // Handle error
+        }
+      }
+    });
+  });
+});
+
+  </script>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>

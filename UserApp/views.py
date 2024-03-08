@@ -1,19 +1,42 @@
 from decimal import Decimal
+from django.http import JsonResponse
+
 
 from django.db.models import Q, IntegerField, DecimalField
 from django.shortcuts import render, redirect, HttpResponse
 from .models import *
-# from django.contrib.auth.decorators import login_required
 from django.db.models import Sum, F
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
 
 
 # Create your views here.
+def sign(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        phone = request.POST.get('phone')
+        password = request.POST.get('password')
+        exists = UserModel.objects.filter(Username=username).exists()
+
+        if exists:
+
+            return redirect('sign')
+        else:
+            user = UserModel(Username=username,  Phone_Number=phone, Password=password)
+            user.save()
+
+            return redirect('login')
+    return render(request, "Signup.html")
+
 def login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         print(username)
         password = request.POST.get('password')
         data = UserModel.objects.filter(Username=username, Password=password)
+
+
 
         if data:
             print(username)
@@ -49,9 +72,13 @@ def myhome(request):
         print(current_user)
         user = UserModel.objects.get(Username=current_user)
 
+
     return render(request, 'Home.html',
                   {'products': data, 'user': user, 'categories': dataa, 'girls': girls, 'boys': boys, 'toys': toys,
                    'accessories': accessories, 'stationary': stationary, 'footwear': footwear})
+
+
+
 
 
 def search(request):
@@ -217,6 +244,7 @@ def mycart(request):
         username = request.session.get('data')
         User_id = UserModel.objects.get(Username=username)
 
+
         if request.method == "POST":
             print('aaa')
 
@@ -237,13 +265,22 @@ def mycart(request):
         else:
             usercartdetails = CartModel.objects.filter(User_id=UserModel.objects.get(Username=username))
 
+            if request.method == 'POST':
+                search = request.POST.get('search')
+                if 'selected_price' in request.POST:
+                    print(int(request.POST['selected_price']))
+                    data = ProductModel.objects.prefetch_related('images').filter(
+                        Price=int(request.POST['selected_price']))
+
             # total_price = usercartdetails.aggregate(
             #     total_price=Sum(F('Product_id__Price') * F('Quantity'), output_field=DecimalField()))['total_price']
             # total_price = total_price or Decimal('0')  # Handle None case
 
-        return render(request, 'mycart.html', {'user_products': usercartdetails})
+        return render(request, 'mycart.html', {'user_products': usercartdetails,'data':data})
+    else:
+        return redirect('/login')
 
-    return render(request, 'mycart.html')
+
 
 
 def buy(request):
@@ -331,6 +368,58 @@ def dlt_address(request, Address_id):
     return redirect('/addressview')
 
 
+# def View_brand(request, id):
+#     data = ProductModel.objects.filter(Brand_id=BrandModel.objects.get(Brand_id=id))
+#     return render(request, 'View_Brand.html', {'data': data})
+
 def View_brand(request, id):
-    data = ProductModel.objects.filter(Brand_id=BrandModel.objects.get(Brand_id=id))
-    return render(request, 'View_brand.html', {'data': data})
+    data = ProductModel.objects.prefetch_related('images').filter(Brand_id=id)
+
+    print(data.values())
+    return render(request, 'View_Brand.html', {'data': data})
+
+
+# def View_brand(request):
+#     events = OfferEventModel.objects.all()
+#
+#     return render(request, 'offer.html', {'events': events})
+#
+
+# def add_to_wishlist(request):
+#     if request.method == 'POST' and request.is_ajax():
+#         product_id = request.POST.get('product_id')
+#         # Assuming the user is authenticated and stored in request.user
+#         if 'data' in request.session:
+#             wishlist_item = WishlistModel.objects(Userid=UserModel.objects.get(Username=request.session['data']), Product_id=ProductModel.objects.get(Product_id=product_id))
+#
+#             return JsonResponse({'success': True, 'message': 'Product added to wishlist.'})
+#         else:
+#
+#             return JsonResponse({'success': False, 'message': 'Product already in wishlist.'})
+#     return JsonResponse({'success': False, 'message': 'Invalid request.'})
+#
+
+def add_to_wishlist(request):
+
+    if request.method == 'POST':
+
+        product_id = request.POST.get('product_id')
+        print(f'product : {product_id}')
+
+        if 'data' in request.session:
+            wishlist_item = WishlistModel.objects.filter(User_id=UserModel.objects.get(Username=request.session['data']), Product_id=ProductModel.objects.get(Product_id=product_id))
+
+            if wishlist_item.exists():
+                print('Product already in wishlist.')
+                return JsonResponse({'success': True,'message': 'Product already in wishlist.'})
+            else:
+                print('Product added to wishlist.')
+                wishlist_item = WishlistModel.objects.create(User_id=UserModel.objects.get(Username=request.session['data']), Product_id=ProductModel.objects.get(Product_id=product_id))
+                wishlist_item.save()
+                return JsonResponse({'success': True,'message': 'Product added to wishlist.'})
+
+        # Add the product to the wishlist here
+        # Example:
+        return JsonResponse({'success': True})
+    else:
+        return JsonResponse({'success': False})

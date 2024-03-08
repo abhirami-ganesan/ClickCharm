@@ -87,8 +87,12 @@ class ProductImageModel(models.Model):
 
     # Admin_id = models.ForeignKey(AdminModel, on_delete=models.CASCADE)
 
+
+
     class Meta:
         db_table = "Product_image_table"
+
+
 
 
 class VariantProductModel(models.Model):

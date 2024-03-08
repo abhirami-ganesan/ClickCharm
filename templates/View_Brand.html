@@ -147,7 +147,7 @@
 
           {% endfor %}
       <div class="card-body">
-        <h5 class="card-title">{{x.Product_id.Product_title}}</h5>
+        <h5 class="card-title">{{x.Product_title}}</h5>
         <p class="card-text">{{x.Product_description}}</p>
         <p class="card-text">{{x.Quantity}}</p>
 
@@ -155,7 +155,7 @@
 
 
 
-                    <a href="/product/{{x.Brand_id.Product_id }}"  class="btn btn-success" id="shop" >Shop Now</a>
+                    <a href="/product/{{ x.Product_id }}"  class="btn btn-success" id="shop" >Shop Now</a>
         <a href="" class="pista-btn" id="wishlistButton">
     <button type="submit"> <i class="fa fa-heart-o" aria-hidden="true"></i>  Wishlist</button>
 
@@ -170,6 +170,12 @@
   <br>
  {% endfor %}
   <br><br>
+
+
+  </div>
+</div>
+  <br><br>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

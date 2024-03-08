@@ -248,6 +248,7 @@
               {% endfor %}
             </div>
         </div>
+
         <div class="right">
             <div class="pname">
              {{x.Product_title}}
@@ -270,25 +271,51 @@
                 <div class="psize">XL</div>
             </div>
 
-            <div class="quantity">
 
 
-            </div>
-
-                <div>
                  <form method="POST" action="/mycart" >
                      {% csrf_token %}
+                     <label>Select Quantity</label>
                      <input type="number" min="1" max="5" name="qua" value="{{x.Quantity}}">
-                     <input type="number" style="display:hidden;"  name="id" value="{{x.Product_id}}">
+                     <input type="number" style="display: none;" name="id" value="{{x.Product_id}}">
+                     <br><br>
 
-                <button type="submit" name="cart">Add to Cart</button>
+
+                <button type="submit" name="cart" class="btn btn-success">Add to Cart</button>
                      </form>
+            <br>
                 <form method="POST" action="/bu/{{x.Product_id}}">
                      {% csrf_token %}
                 <button type="submit" name="cart">Buy Now</button>
                      </form>
-            </div>
-            </div>
+            <br><br>
+            <h5  >Review & Rating</h5>
+            <br>
+    <form method="POST" >
+        {% csrf_token %}
+                <input type="textarea" name="review" placeholder="write your review here">
+         <input type="number" name="rating" placeholder="rating">
+        <br><br>
+                <button type="submit" class="btn btn-success" value="submit">Submit</button>
+    </form>
+     <br>
+            <h6>Reviews</h6>
+      {% for x in review %}
+    <p >{{x.User_id.Username}}</p>
+
+    <p class="card-subtitle mb-2 text-muted">5/{{x.Rating}}</p>
+    <p class="card-text">{{x.Review}}</p>
+      <hr style="font-weight: lighter;">
+      {% endfor %}
+
+  </div>
+</div>
+
+
+
+
+        </div>
+
 
         </div>
 
@@ -299,28 +326,6 @@
 
 
 
-<br><br>
-
-
-<div>
-<h5 class="text" >Review & Rating</h5>
-    <form method="POST" >
-        {% csrf_token %}
-                <input type="textarea" name="review" placeholder="write your review here">
-        <br>
-         <input type="number" name="rating" placeholder="rating">
-                <button type="submit" class="btn btn-success" value="submit">Submit</button>
-    </form>
-<div class="card" >
-  <div class="card-body" >
-      {% for x in review %}
-    <h5 class="card-title">{{x.User_id.Username}}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">5/{{x.Rating}}</h6>
-    <p class="card-text">{{x.Review}}</p>
-      {% endfor %}
-  </div>
-</div>
-</div>
 
 
 
