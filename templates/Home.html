@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha384-dfDw0BO6jbY5UBPIe3W7jASzFz5SXM4PoLMT1Z9ZqY4UZqZbVoFFlJ7A/KW1mCiR" crossorigin="anonymous">
         <script src="https://kit.fontawesome.com/8ba53d469b.js" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-rDlOetVpe7bTDCtFyv6Tt3gSfdhXjfvVGmY7SvGnP5NVBhA5+iEHP8UwvGmLeXU1VJPI67DKgh8s/XmNL4Y4cg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 
 <style>
 
@@ -57,11 +60,6 @@
     color: #ff3b30; /* Adjust the color of the heart icon */
     animation: heart 0.8s ease;
 }
-#myhome{
-  background-color:green;
-  color:white;
-  border-radius:5px;
-  }
     .carousel-item .col img {
 
       height: 300px; /* Maintain aspect ratio */
@@ -72,29 +70,126 @@
      width:80%;
   }
 
+.custom-brand .brand-text {
+    font-weight: bold;
+
+}
+.custom-home-link {
+
+     font-style: italic;
+    font-size: 15px;
+    color: #333; /* Adjust color as needed */
+    padding: 10px 15px; /* Adjust padding as needed */
+    background-color: #f8f9fa; /* Adjust background color as needed */
+    border-radius: 5px; /* Adjust border radius as needed */
+}
+
+.custom-home-link:hover {
+    background-color: #87CEEB; /* Adjust hover background color as needed */
+    color: #555; /* Adjust hover color as needed */
+
+}
+
+.custom-brand-link {
+
+    font-size: 15px;
+    color: #333; /* Adjust color as needed */
+    padding: 10px 15px; /* Adjust padding as needed */
+    text-decoration: none; /* Remove underline */
+}
+
+.custom-brand-link:hover {
+       background-color: #87CEEB; /* Adjust hover background color as needed */
+    color: #555; /* Adjust hover color as needed */
+    }
+.custom-offer-link {
+
+    font-size: 15px;
+    color: #333; /* Adjust color as needed */
+    padding: 10px 15px; /* Adjust padding as needed */
+    text-decoration: none; /* Remove underline */
+}
+
+.custom-offer-link:hover {
+  background-color: #87CEEB; /* Adjust hover background color as needed */
+    color: #555; /* Adjust hover color as needed */
+}
+.cover-text {
+  position: absolute;
+  top: 20%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: black;
+}
+
+.cover-text h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.cover-text p {
+  font-size: 18px;
+}
+    .custom-card {
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .custom-card img {
+     width:100%;
+      border-radius: 15px 15px 0 0;
+    }
+
+    .custom-card .card-body {
+      padding: 20px;
+    }
+.user{
+    margin-top:0.9%;
+    }
+    <style>
+    .wishlist-btn {
+        top: 10px;
+        right: 10px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #aaa;
+    }
+
+    .wishlist-btn.clicked {
+        color: #ff0000; /* Change to your desired color */
+    }
+</style>
 
 </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-     <a class="navbar-brand" href="#">
-      <img src="{% static 'images/logo.jpg' %}" alt="Navbar Logo" height="30" class="d-inline-block align-text-top">
-      ClickCharm
-    </a>
+<nav class="navbar navbar-expand-lg navbar-light bg-white" >
+    <div class="container-fluid" >
+   <a class="navbar-brand custom-brand" href="#">
+    <img src="{% static 'images/cclogo.jpg' %}" alt="Navbar Logo" height="30px" class="d-inline-block align-text-top">
+    <span class="brand-text">ClickCharm</span>
+</a>
+
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#" id="myhome">HOME</a>
-        </li>
+    <a class="nav-link active custom-home-link" aria-current="page" href="#" id="myhome">HOME</a>
+</li>
+
         <li class="nav-item ms-5">
-          <a class="nav-link" href="/offer">OFFER</a>
-        </li>
+    <a class="nav-link active custom-offer-link" href="/offer">OFFER</a>
+</li>
+
         <li class="nav-item dropdown ms-5">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle custom-brand-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             CATAEGORY
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown" >
@@ -104,24 +199,52 @@
           </ul>
         </li>
         <li class="nav-item ms-5">
-          <a class="nav-link active" href="/brand"  aria-disabled="page">BRAND</a>
-        </li>
+    <a class="nav-link active custom-brand-link" href="/brand" aria-disabled="page">BRAND</a>
+      </li>
+
+<!--        <li class="nav-item ms-5">-->
+<!--    <a class="nav-link active" href="/profile" aria-disabled="false">-->
+<!--        <i class="fas fa-heart"></i> -->
+<!--    </a>-->
+<!--</li>-->
+
         <li class="nav-item ms-5">
-          <a class="nav-link active" href="/profile"  aria-disabled="page">WISHLIST</a>
-        </li>
-        <li class="nav-item ms-5">
-          <a class="nav-link active" href="/profile"  aria-disabled="page">BAG</a>
-        </li>
-         <a class="nav-item ms-5 " href="/profile" >
-                    <i class="fas fa-user btn btn-success"></i> <!-- Font Awesome user icon -->
-                </a>
+    <a class="nav-link active custom-wishlist-link" href="/mycart" aria-disabled="page">
+        <i class="fas fa-heart"></i> <!-- Font Awesome heart icon -->
+    </a>
+</li>
+
+<!--         <li class="nav-item ms-5">-->
+<!--          <a class="nav-link active" href="/profile"  aria-disabled="page">BAG</a>-->
+<!--        </li>-->
+          <li class="nav-item ms-5">
+    <a class="nav-link active" href="/mycart" aria-disabled="false">
+        <i class="fas fa-shopping-bag"></i>
+    </a>
+</li>
+
+<li class="nav-item ms-5">
+    <a class="nav-link active" href="/profile" aria-disabled="false">
+        <i class="fas fa-user"></i> <!-- Font Awesome user icon -->
+    </a>
+</li>
+
+
 
       {% if user == 'no use' %}
-         <a class="nav-link" href="/login" style="margin-left:100px">Login</a>
+<!--         <a class="nav-link" href="/login" style="margin-left:100px">Login</a>-->
+          <a class="nav-link" href="/login" style=" color: black;">
+    <i class="fas fa-user" style="color: black;"></i> Login
+</a>
+
 
           {% else %}
-        <a class="nav-link" href="/logout" style="margin-left:100px">Logout</a>
-          <h5><span style="color:pink;">{{user.Username}}</span></h5>
+<!--        <a class="nav-link" href="/logout" style="margin-left:100px">Logout</a>-->
+          <a class="nav-link active" href="/logout" style="margin-left:100px; color: black;">
+    <i class="fas fa-sign-out-alt" style="color: black;"></i>
+</a>
+
+          <h6 class="user"><span style="color:black;">{{user.Username}}</span></h6>
 
 
 
@@ -133,7 +256,7 @@
       <form class="d-flex mx-auto" method="POST" action="/search/">
         {% csrf_token %}
         <input class="form-control me-2" type="text" name="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <button class="btn btn-outline-secondary" type="submit">Search</button>
       </form>
     </div>
 
@@ -141,344 +264,180 @@
     </div>
   </div>
 </nav>
-<div id="section1" >
-  <img src="{% static 'images/cov1.jpg' %}" alt="Image Description" width="100%" height="550px">
 
 
-</div>
-
-<br>
-  <a href="{% url 'offer' %}">
-        <img src="{% static 'images/megasale.png' %}" alt="Image Description" width="100%" height="340px">
-    </a>
-<br>
-<br>
-<h5 class="text-center">SHOP BY CATEGORY </h5>
-<BR>
-
-<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <!-- First Row of Images -->
-    <div class="carousel-item active">
-      <div class="row">
-         <div class="col"><img src="{% static 'images/girlsclothing.webp' %}" class="d-block w-100" alt="Slide 4" ></div>
-        <div class="col"><img src="{% static 'images/boysclothing.webp' %}" class="d-block w-100" alt="Slide 5" ></div>
-        <div class="col"><img src="{% static 'images/toys.webp' %}" class="d-block w-100" alt="Slide 6" ></div>
-
-
-      </div>
-    </div>
-    <!-- Second Row of Images -->
-    <div class="carousel-item">
-      <div class="row">
-        <div class="col"><img src="{% static 'images/stationary.webp' %}" class="d-block w-100" alt="Slide 4" ></div>
-        <div class="col"><img src="{% static 'images/footware.jpeg' %}" class="d-block w-100" alt="Slide 5" ></div>
-        <div class="col"><img src="{% static 'images/accessories.jpg' %}" class="d-block w-100" alt="Slide 6" ></div>
-      </div>
-    </div>
-
+<div id="section1" style="position: relative;">
+  <img src="{% static 'images/cover.png' %}" alt="Image Description" width="100%" height="500px" height="170px">
+  <div class="cover-text">
+    <h1>Welcome to ClickCharm</h1>
+    <p>Explore the latest trends in fashion and accessories.</p>
   </div>
 
 
-  <br><br>
-  <!-- Previous and Next buttons -->
-  <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
 </div>
 
-  <br><br>
+<br>
+<div class="container mt-5">
+    <div class="row row-cols-1 row-cols-md-6 g-4">
+      <div class="col">
+        <div class="card custom-card">
+          <img src="{% static 'images/card2.avif' %}" class="card-img-top" alt="..." height="170px">
+          <div class="card-body">
+            <P class="card-title">GIRLS CLOTHING</P>
+          </div>
+        </div>
+      </div>
+      <!-- Repeat this div for each additional card -->
+      <div class="col">
+        <div class="card custom-card">
+          <img src="{% static 'images/carousel1.jpg' %}" class="card-img-top" alt="..." height="170px">
+          <div class="card-body">
+            <P class="card-title">BOYS CLOTHING</P>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card custom-card">
+          <img src="{% static 'images/toysandaccesories.jpg' %}" class="card-img-top" alt="..." height="170px">
+          <div class="card-body">
+            <P class="card-title">TOYS&GAMES</P>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card custom-card">
+                      <img src="{% static 'images/accessoriess.jpeg' %}" class="card-img-top" alt="..." height="170px">
+
+          <div class="card-body">
+            <P class="card-title"> ACCESSORIES</P>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card custom-card">
+                      <img src="{% static 'images/stationaryy.avif' %}" class="card-img-top" alt="..." height="170px">
+          <div class="card-body">
+            <P class="card-title">STATIONARY</P>
+
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card custom-card">
+                      <img src="{% static 'images/foootwear.jpg' %}" class="card-img-top" alt="..." height="170px">
+
+          <div class="card-body">
+            <P class="card-title">FOOTWEAR</P>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS (Optional) -->
+
+<!--  <a href="{% url 'offer' %}">-->
+<!--        <img src="{% static 'images/meghasale.png' %}" alt="Image Description" width="100%" height="340px">-->
+<!--    </a>-->
+<br>
+<br>
+
+<!--<h1>RECENTLY VIEWED PRODUCTS</h1>-->
+
+<!--    <div class="row">-->
+<!--      {% for product in recently_viewed_products %}-->
+<!--        <div class="col-md-3">-->
+<!--          <div class="card mb-4 shadow-sm" >-->
+<!--            <img src="{{ product.images.first.images.url }}" class="card-img-top" alt="Product Image" height="200px" width="100px;">-->
+<!--            <div class="card-body">-->
+<!--              <h5 class="card-title">{{ product.Product_title }}</h5>-->
+<!--              <p class="card-text">{{ product.Product_description }}</p>-->
+<!--              <p class="card-text">Price: ${{ product.Price }}</p>-->
+<!--              <a href="/product/{{ product.Product_id }}"  class="btn" style="background-color:#85144B; color:#fff;" id="shop" >Shop Now</a>-->
+<!--                &lt;!&ndash; Modify Shop Now button to include recently viewed product IDs &ndash;&gt;-->
+<!--               <button class="wishlist-btn" data-product-id="{{ product.Product_id }}">-->
+<!--                    <i class="fa fa-heart-o" aria-hidden="true"></i> Wishlist-->
+<!--                </button>-->
+<!--&lt;!&ndash;        <button class="wishlist-btn" data-product-id="{{ product.Product_id }}" class="fa fa-heart-o"  aria-hidden="true"> Wishlist</button>&ndash;&gt;-->
+
+
+
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      {% endfor %}-->
+<!--    </div>-->
+
+<div class="container">
+    <h3>Recently Viewed Products</h3>
+    <div class="row">
+        {% for product in recently_viewed_products %}
+            <div class="col-md-3">
+                <div class="card mb-4 shadow-sm">
+            <img src="{{ product.images.first.images.url }}" class="card-img-top" alt="Product Image" height="200px" width="100px;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.Product_title }}</h5>
+                        <p class="card-text">{{ product.Product_description }}</p>
+                        <p class="card-text">Price: ${{ product.Price }}</p>
+                        <!-- Add to cart button or other actions -->
+                        <a href="/product/{{ product.Product_id }}"  class="btn" style="background-color:#85144B; color:#fff;" id="shop" >Shop Now</a>
+                <!-- Modify Shop Now button to include recently viewed product IDs -->
+               <button class="wishlist-btn" data-product-id="{{ product.Product_id }}">
+                    <i class="fa fa-heart-o" aria-hidden="true"></i> Wishlist
+                </button>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<h5 class="text-center">SHOP BY CATEGORY </h5>
+
+
+
+  <br>
+
+
+<div class="container mt-5">
+  {% for category_product in category_products %}
+    <!-- Display category name -->
+    <h5 class="text-center">{{ category_product.category.Main_category }}</h5>
     <br>
 
-<!--<div class="container">-->
-<!--<div class="row row-cols-1 row-cols-md-3 g-4">-->
-<!--  {% for x in products %}-->
-<!--  <div class="col">-->
-<!--    <div class="card">-->
+    <!-- Display products for the category -->
+    <div class="row">
+      {% for product in category_product.products %}
+        <div class="col-md-3">
+          <div class="card mb-4 shadow-sm" >
+            <img src="{{ product.images.first.images.url }}" class="card-img-top" alt="Product Image" height="200px" width="100px;">
+               <button class="wishlist-btn position-absolute" data-product-id="{{ product.Product_id }}">
+                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                        </button>
 
-<!--          {% for image in x.images.all|slice:":1" %}-->
+            <div class="card-body">
+              <h5 class="card-title">{{ product.Product_title }}</h5>
+              <p class="card-text">{{ product.Product_description }}</p>
+              <p class="card-text">Price: ${{ product.Price }}</p>
+              <a href="/product/{{ product.Product_id }}"  class="btn" style="background-color:#85144B; color:#fff;" id="shop" >Shop Now</a>
+                <!-- Modify Shop Now button to include recently viewed product IDs -->
 
-<!--      <img src="{{ image.images.url }}" class="card-img-top" height="450px">-->
-
-<!--          {% endfor %}-->
-<!--      <div class="card-body">-->
-<!--        <h2 class="card-title">{{x.Main_category_id.Main_category}}</h2>-->
-<!--        <h5 class="card-title">{{x.Product_title}}</h5>-->
-<!--        <p class="card-text">{{x.Product_description}}</p>-->
-<!--        <p class="card-text">{{x.Quantity}}</p>-->
-
-<!--        <p class="card-text">{{x.Price}}</p>-->
-
-
-
-<!--                    <a href="/product/{{ x.Product_id }}"  class="btn btn-yellow" id="shop" >Shop Now</a>-->
-<!--        <a href="/addwishlist"><button type="submit"> <i class="fa fa-heart-o" aria-hidden="true"></i>Wishlist</button>-->
-<!--        </a>-->
-
-
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <br>-->
-<!--  <br>-->
-<!-- {% endfor %}-->
-<!--  <br><br>-->
-
-<h4 class="text-center">GIRLSCLOTHING </h4>
-
-  <div class="container">
-<div class="row row-cols-1 row-cols-md-3 g-4">
-  {% for x in girls %}
-  <div class="col">
-    <div class="card">
-
-          {% for image in x.images.all|slice:":1" %}
-
-      <img src="{{ image.images.url }}" class="card-img-top" height="350px" >
-
-          {% endfor %}
-      <div class="card-body">
-
-
-        <h5 class="card-title">{{x.Product_title}}</h5>
-        <p class="card-text">{{x.Product_description}}</p>
-        <p class="card-text">{{x.Quantity}}</p>
-        <p class="card-text">{{x.Price}}</p>
-
-        <button class="wishlist-btn" data-product-id="{{ x.Product_id }}"><i class="fa fa-heart-o"  aria-hidden="true"></i> Wishlist</button>
-
-                    <a href="/product/{{ x.Product_id }}"  class="btn btn-success" id="shop" >Shop Now</a>
-
-</a>
-
-
-
-      </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
     </div>
-  </div>
-  <br>
-  <br>
- {% endfor %}
-  <br><br>
-
-
-  </div>
+  {% endfor %}
 </div>
-  <br><br>
+<br>
 
 
+<!-- Add this section to display recently viewed products -->
+<!-- Add this section to display recently viewed products -->
 
-<h4 class="text-center">BOYS CLOTHING </h4>
 
-  <div class="container">
-<div class="row row-cols-1 row-cols-md-3 g-4">
-  {% for x in boys %}
-  <div class="col">
-    <div class="card">
 
-          {% for image in x.images.all|slice:":1" %}
-
-      <img src="{{ image.images.url }}" class="card-img-top" height="350px">
-
-          {% endfor %}
-      <div class="card-body">
-        <h5 class="card-title">{{x.Product_title}}</h5>
-        <form method="POST">
-          {% csrf_token %}
-          <button type="submit"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
-
-        </form>
-
-
-        <p class="card-text">{{x.Product_description}}</p>
-        <p class="card-text">{{x.Quantity}}</p>
-
-        <p class="card-text">{{x.Price}}</p>
-
-
-
-                    <a href="/product/{{ x.Product_id }}"  class="btn btn-success" id="shop" >Shop Now</a>
-        </a>
-
-
-      </div>
-    </div>
-  </div>
-  <br>
-  <br>
- {% endfor %}
-  <br><br>
-
-
-  </div>
-</div>
-  <br><br>
-
-<h4 class="text-center">TOYS & GAMES</h4>
-
-  <div class="container">
-<div class="row row-cols-1 row-cols-md-3 g-4">
-  {% for x in toys %}
-  <div class="col">
-    <div class="card">
-
-          {% for image in x.images.all|slice:":1" %}
-
-      <img src="{{ image.images.url }}" class="card-img-top" height="350px">
-
-          {% endfor %}
-      <div class="card-body">
-        <h5 class="card-title">{{x.Product_title}}</h5>
-        <p class="card-text">{{x.Product_description}}</p>
-        <p class="card-text">{{x.Quantity}}</p>
-
-        <p class="card-text">{{x.Price}}</p>
-
-
-
-                    <a href="/product/{{ x.Product_id }}"  class="btn btn-yellow" id="shop" >Shop Now</a>
-                <a href="" class="pista-btn" id="wishlistButton">
-
-        <a href="/addwishlist"><button type="submit"> <i class="fa fa-heart-o" aria-hidden="true"></i>Wishlist</button>
-        </a>
-
-
-      </div>
-    </div>
-  </div>
-  <br>
-  <br>
- {% endfor %}
-  <br><br>
-
-
-  </div>
-</div>
-  <br><br>
-
-<h4 class="text-center">KIDS ACCESSORIES </h4>
-
-  <div class="container">
-<div class="row row-cols-1 row-cols-md-3 g-4">
-  {% for x in accessories %}
-  <div class="col">
-    <div class="card">
-
-          {% for image in x.images.all|slice:":1" %}
-
-      <img src="{{ image.images.url }}" class="card-img-top" height="350px">
-
-          {% endfor %}
-      <div class="card-body">
-        <h5 class="card-title">{{x.Product_title}}</h5>
-        <p class="card-text">{{x.Product_description}}</p>
-        <p class="card-text">{{x.Quantity}}</p>
-
-        <p class="card-text">{{x.Price}}</p>
-
-
-
-                    <a href="/product/{{ x.Product_id }}"  class="btn btn-yellow" id="shop" >Shop Now</a>
-        <button class="add-to-wishlist" data-product-id="{{ product.id }}">Add to Wishlist</button>
-
-
-
-      </div>
-    </div>
-  </div>
-  <br>
-  <br>
- {% endfor %}
-  <br><br>
-
-
-  </div>
-</div>
-  <br><br>
-
-<h4 class="text-center">STATIONARY </h4>
-
-  <div class="container">
-<div class="row row-cols-1 row-cols-md-3 g-4">
-  {% for x in stationary %}
-  <div class="col">
-    <div class="card">
-
-          {% for image in x.images.all|slice:":1" %}
-
-      <img src="{{ image.images.url }}" class="card-img-top" height="350px">
-
-          {% endfor %}
-      <div class="card-body">
-        <h5 class="card-title">{{x.Product_title}}</h5>
-        <p class="card-text">{{x.Product_description}}</p>
-        <p class="card-text">{{x.Quantity}}</p>
-
-        <p class="card-text">{{x.Price}}</p>
-
-
-
-                    <a href="/product/{{ x.Product_id }}"  class="btn btn-success" id="shop" >Shop Now</a>
-        <a href="/addwishlist"><button type="submit"> <i class="fa fa-heart-o" aria-hidden="true"></i>Wishlist</button>
-        </a>
-
-
-      </div>
-    </div>
-  </div>
-  <br>
-  <br>
- {% endfor %}
-  <br><br>
-
-
-  </div>
-</div>
-  <br><br>
-
-<h1 class="text-center">FOOTWEAR</h1>
-
-  <div class="container">
-<div class="row row-cols-1 row-cols-md-3 g-4">
-  {% for x in footwear %}
-  <div class="col">
-    <div class="card">
-
-          {% for image in x.images.all|slice:":1" %}
-
-      <img src="{{ image.images.url }}" class="card-img-top" height="350px">
-
-          {% endfor %}
-      <div class="card-body">
-        <h5 class="card-title">{{x.Product_title}}</h5>
-        <p class="card-text">{{x.Product_description}}</p>
-        <p class="card-text">{{x.Quantity}}</p>
-
-        <p class="card-text">{{x.Price}}</p>
-
-
-
-                    <a href="/product/{{ x.Product_id }}"  class="btn btn-success" id="shop" >Shop Now</a>
-        <a href="/addwishlist"><button type="submit"> <i class="fa fa-heart-o" aria-hidden="true"></i>Wishlist</button>
-        </a>
-
-
-      </div>
-    </div>
-  </div>
-  <br>
-  <br>
- {% endfor %}
-  <br><br>
-
-
-  </div>
-</div>
 
 <!-- Footer -->
 <footer class="text-center text-lg-start bg-body-tertiary text-muted">
@@ -491,7 +450,7 @@
     <!-- Left -->
 
     <!-- Right -->
-    <div>
+
       <a href="" class="me-4 text-reset">
         <i class="fab fa-facebook-f"></i>
       </a>
@@ -504,12 +463,8 @@
       <a href="" class="me-4 text-reset">
         <i class="fab fa-instagram"></i>
       </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-linkedin"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-github"></i>
-      </a>
+
+
     </div>
     <!-- Right -->
   </section>
@@ -546,35 +501,25 @@
           <h6 class="text-uppercase fw-bold mb-4">
             CUSTOMER POLICIES
           </h6>
-          <p>
-            <a href="#!" class="text-reset">Contact Us</a>
+          <p class="text-reset">Contact Us
           </p>
-          <p>
-            <a href="#!" class="text-reset">FAQ</a>
+          <p class="text-reset">FAQ
           </p>
-          <p>
-            <a href="#!" class="text-reset">T&C</a>
+          <p class="text-reset">T&C
           </p>
-          <p>
-            <a href="#!" class="text-reset">Terms Of Use</a>
+          <p class="text-reset">Terms Of Use
           </p>
-          <p>
-            <a href="#!" class="text-reset">Track Orders</a>
+          <p class="text-reset">Track Orders
           </p>
-          <p>
-            <a href="#!" class="text-reset">Shipping</a>
+          <p class="text-reset">Shipping
           </p>
-           <p>
-            <a href="#!" class="text-reset">Cancellation</a>
+           <p class="text-reset">Cancellation
           </p>
-          <p>
-            <a href="#!" class="text-reset">Returns</a>
+          <p class="text-reset">Returns
           </p>
-          <p>
-            <a href="#!" class="text-reset">Privacy policy</a>
+          <p class="text-reset">Privacy policy
           </p>
-          <p>
-            <a href="#!" class="text-reset">Grievance Officer</a>
+          <p class="text-reset">Grievance Officer
           </p>
 
         </div>
@@ -586,17 +531,13 @@
           <h6 class="text-uppercase fw-bold mb-4">
             Useful links
           </h6>
-          <p>
-            <a href="#!" class="text-reset">Pricing</a>
+          <p class="text-reset">Pricing
           </p>
-          <p>
-            <a href="#!" class="text-reset">Settings</a>
+          <p class="text-reset">Settings
           </p>
-          <p>
-            <a href="#!" class="text-reset">Orders</a>
+          <p class="text-reset">Orders
           </p>
-          <p>
-            <a href="#!" class="text-reset">Help</a>
+          <p class="text-reset">Help
           </p>
         </div>
         <!-- Grid column -->
@@ -619,7 +560,7 @@
     </div>
     <br><br>
     <h6>POPULAR SEARCHES</h6>
-    <p>Makeup | Dresses For Girls | T-Shirts |  Babydolls | Watches | Bags | Sport Shoes | Reebok Shoes | Puma Shoes |  Tops | Earrings | Fastrack Watches |  Kurtis |  Smart Watches | Titan Watches |  Gowns | Rings | Cricket Shoes | Lipstick | Watches | Dresses | Lehenga | Nike Shoes |  Shoes | Adidas Shoes | Woodland Shoes | Jewellery /p>
+    <p>Makeup | Dresses For Girls | T-Shirts |  Babydolls | Watches | Bags | Sport Shoes | Reebok Shoes | Puma Shoes |  Tops | Earrings | Fastrack Watches |  Kurtis |  Smart Watches | Titan Watches |  Gowns | Rings | Cricket Shoes | Lipstick | Watches | Dresses | Lehenga | Nike Shoes |  Shoes | Adidas Shoes | Woodland Shoes | Jewellery </p>
 
   </section>
   <!-- Section: Links  -->
@@ -637,29 +578,45 @@
 
 
   <script>
-    $(document).ready(function() {
-  $(".wishlist-btn").click(function() {
-    var productId = $(this).data("product-id");
-    $.ajax({
-      type: "POST",
-      url: "/add-to-wishlist/",
-      data: {
-        'product_id': productId,
-        csrfmiddlewaretoken: '{{ csrf_token }}'
-      },
-      dataType: 'json',
-      success: function(data) {
-        if (data.success) {
 
-          // Change the color of the heart icon to indicate it's added to the wishlist
-          $(this).find("i").removeClass("fa-heart-o").addClass("fa-heart").css("color", "red");
-        } else {
-          // Handle error
-        }
-      }
+<!--      $(document).ready(function() {-->
+<!--    $(".wishlist-btn").click(function() {-->
+<!--        var productId = $(this).data("product-id");-->
+<!--        var buttonIcon = $(this).find("i");-->
+
+<!--        $.ajax({-->
+<!--            type: "POST",-->
+<!--            url: "/add-to-wishlist/",-->
+<!--            data: {-->
+<!--                'product_id': productId,-->
+<!--                csrfmiddlewaretoken: '{{ csrf_token }}'-->
+<!--            },-->
+<!--            dataType: 'json',-->
+<!--            success: function(data) {-->
+<!--                if (data.success) {-->
+<!--                    // Product added to wishlist, change icon color to indicate it-->
+<!--                    buttonIcon.removeClass("fa-heart-o").addClass("fa-heart").css("color", "#85144B");-->
+<!--                } else {-->
+<!--                    // Handle error-->
+<!--                    console.error("Failed to add product to wishlist");-->
+<!--                }-->
+<!--            },-->
+<!--            error: function(xhr, status, error) {-->
+<!--                // Handle AJAX error-->
+<!--                console.error("AJAX request failed:", error);-->
+<!--            }-->
+<!--        });-->
+<!--    });-->
+<!--});-->
+    document.addEventListener('DOMContentLoaded', function () {
+        const wishlistButtons = document.querySelectorAll('.wishlist-btn');
+
+        wishlistButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                this.classList.toggle('clicked');
+            });
+        });
     });
-  });
-});
 
   </script>
 

@@ -15,25 +15,108 @@
   }
 
 
+
+.custom-home-link {
+
+     font-style: italic;
+    font-size: 15px;
+    color: #333; /* Adjust color as needed */
+    padding: 10px 15px; /* Adjust padding as needed */
+    background-color: #f8f9fa; /* Adjust background color as needed */
+    border-radius: 5px; /* Adjust border radius as needed */
+}
+
+.custom-home-link:hover {
+    background-color: #87CEEB; /* Adjust hover background color as needed */
+    color: #555; /* Adjust hover color as needed */
+
+}
+
+.custom-brand-link {
+
+    font-size: 15px;
+    color: #333; /* Adjust color as needed */
+    padding: 10px 15px; /* Adjust padding as needed */
+    text-decoration: none; /* Remove underline */
+}
+
+.custom-brand-link:hover {
+       background-color: #87CEEB; /* Adjust hover background color as needed */
+    color: #555; /* Adjust hover color as needed */
+    }
+.custom-offer-link {
+
+    font-size: 15px;
+    color: #333; /* Adjust color as needed */
+    padding: 10px 15px; /* Adjust padding as needed */
+    text-decoration: none; /* Remove underline */
+}
+
+.custom-offer-link:hover {
+  background-color: #87CEEB; /* Adjust hover background color as needed */
+    color: #555; /* Adjust hover color as needed */
+}
+.cover-text {
+  position: absolute;
+  top: 20%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: black;
+}
+
+.cover-text h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.cover-text p {
+  font-size: 18px;
+}
+    .custom-card {
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .custom-card img {
+     width:100%;
+      border-radius: 15px 15px 0 0;
+    }
+
+    .custom-card .card-body {
+      padding: 20px;
+    }
+.user{
+    margin-top:0.9%;
+    }
 </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#" id="mybrand">Clickcharm</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-white" >
+    <div class="container-fluid" >
+   <a class="navbar-brand custom-brand" href="#">
+    <img src="{% static 'images/cclogo.jpg' %}" alt="Navbar Logo" height="30px" class="d-inline-block align-text-top">
+    <span class="brand-text">ClickCharm</span>
+</a>
+
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">HOME</a>
-        </li>
+    <a class="nav-link active custom-home-link" aria-current="page" href="#" id="myhome">HOME</a>
+</li>
+
         <li class="nav-item ms-5">
-          <a class="nav-link" href="#">BRAND</a>
-        </li>
+    <a class="nav-link active custom-offer-link" href="/offer">OFFER</a>
+</li>
+
         <li class="nav-item dropdown ms-5">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle custom-brand-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             CATAEGORY
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown" >
@@ -43,24 +126,59 @@
           </ul>
         </li>
         <li class="nav-item ms-5">
-          <a class="nav-link active" href="/profile"  aria-disabled="page">PROFILE</a>
-        </li>
+    <a class="nav-link active custom-brand-link" href="/brand" aria-disabled="page">BRAND</a>
+      </li>
+
+<!--        <li class="nav-item ms-5">-->
+<!--    <a class="nav-link active" href="/profile" aria-disabled="false">-->
+<!--        <i class="fas fa-heart"></i> -->
+<!--    </a>-->
+<!--</li>-->
+
         <li class="nav-item ms-5">
-          <a class="nav-link active" href="/profile"  aria-disabled="page">WISHLIST</a>
-        </li>
-        <li class="nav-item ms-5">
-          <a class="nav-link active" href="/profile"  aria-disabled="page">BAG</a>
-        </li>
+    <a class="nav-link active custom-wishlist-link" href="/profile" aria-disabled="page">
+        <i class="fas fa-heart"></i> <!-- Font Awesome heart icon -->
+    </a>
+</li>
+
+<!--         <li class="nav-item ms-5">-->
+<!--          <a class="nav-link active" href="/profile"  aria-disabled="page">BAG</a>-->
+<!--        </li>-->
+          <li class="nav-item ms-5">
+    <a class="nav-link active" href="/profile" aria-disabled="false">
+        <i class="fas fa-shopping-bag"></i>
+    </a>
+</li>
+
+<li class="nav-item ms-5">
+    <a class="nav-link active" href="/profile" aria-disabled="false">
+        <i class="fas fa-user"></i> <!-- Font Awesome user icon -->
+    </a>
+</li>
+
+
+
+
+
+
+
+
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <form class="d-flex mx-auto" method="POST" action="/search/">
+        {% csrf_token %}
+        <input class="form-control me-2" type="text" name="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-secondary" type="submit">Search</button>
       </form>
+    </div>
+
+
     </div>
   </div>
 </nav>
+
 <br>
-<br>
+
 
 <section class="top-brands" style="margin-left:20px;">
         <div class="row">

@@ -6,6 +6,10 @@ from django.db.models import Q, IntegerField, DecimalField
 from django.shortcuts import render, redirect, HttpResponse
 from .models import *
 from django.db.models import Sum, F
+from django.db.models import Sum
+from django.contrib import messages
+
+
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
@@ -48,34 +52,34 @@ def login(request):
     return render(request, 'login.html')
 
 
-def myhome(request):
-    print(request.method)
-    data = ProductModel.objects.prefetch_related('images').all()
-    girls = ProductModel.objects.prefetch_related('images').filter(
-        Main_category_id=MainCategoryModel.objects.get(Main_category='Girls Clothing'))
-    boys = ProductModel.objects.prefetch_related('images').filter(
-        Main_category_id=MainCategoryModel.objects.get(Main_category='Boys Clothing'))
-    toys = ProductModel.objects.prefetch_related('images').filter(
-        Main_category_id=MainCategoryModel.objects.get(Main_category='Toys & Games'))
-    accessories = ProductModel.objects.prefetch_related('images').filter(
-        Main_category_id=MainCategoryModel.objects.get(Main_category='Kids Accessories'))
-    stationary = ProductModel.objects.prefetch_related('images').filter(
-        Main_category_id=MainCategoryModel.objects.get(Main_category='Stationary'))
-    footwear = ProductModel.objects.prefetch_related('images').filter(
-        Main_category_id=MainCategoryModel.objects.get(Main_category='Footwear'))
+# def myhome(request):
+#     print(request.method)
+#     data = ProductModel.objects.prefetch_related('images').all()
+#     girls = ProductModel.objects.prefetch_related('images').filter(
+#         Main_category_id=MainCategoryModel.objects.get(Main_category='Girls Clothing'))
+#     boys = ProductModel.objects.prefetch_related('images').filter(
+#         Main_category_id=MainCategoryModel.objects.get(Main_category='Boys Clothing'))
+#     toys = ProductModel.objects.prefetch_related('images').filter(
+#         Main_category_id=MainCategoryModel.objects.get(Main_category='Toys & Games'))
+#     accessories = ProductModel.objects.prefetch_related('images').filter(
+#         Main_category_id=MainCategoryModel.objects.get(Main_category='Kids Accessories'))
+#     stationary = ProductModel.objects.prefetch_related('images').filter(
+#         Main_category_id=MainCategoryModel.objects.get(Main_category='Stationary'))
+#     footwear = ProductModel.objects.prefetch_related('images').filter(
+#         Main_category_id=MainCategoryModel.objects.get(Main_category='Footwear'))
+#
+    # dataa = MainCategoryModel.objects.all()
+    # user = 'no user'
+    #
+    # if 'data' in request.session:
+    #     current_user = request.session['data']
+    #     print(current_user)
+    #     user = UserModel.objects.get(Username=current_user)
 
-    dataa = MainCategoryModel.objects.all()
-    user = 'no user'
-
-    if 'data' in request.session:
-        current_user = request.session['data']
-        print(current_user)
-        user = UserModel.objects.get(Username=current_user)
-
-
-    return render(request, 'Home.html',
-                  {'products': data, 'user': user, 'categories': dataa, 'girls': girls, 'boys': boys, 'toys': toys,
-                   'accessories': accessories, 'stationary': stationary, 'footwear': footwear})
+#
+#     return render(request, 'Home.html',
+#                   {'products': data, 'user': user, 'categories': dataa, 'girls': girls, 'boys': boys, 'toys': toys,
+#                    'accessories': accessories, 'stationary': stationary, 'footwear': footwear})
 
 
 
@@ -92,14 +96,54 @@ def search(request):
                 Q(Product_title__icontains=search) | Q(Product_description__icontains=search) | Q(
                     Quantity__icontains=search) | Q(Price__icontains=search))
             print(search)
+
             return render(request, 'search.html', {'products': data})
+def myhome(request):
+    categories = MainCategoryModel.objects.all()
+    category_products = []
+
+    # recently_viewed_product_ids = request.session.get('recently_viewed_products')[:4]
+    #
+    # # Fetch recently viewed products associated with the current user
+    # recently_viewed_products = ProductModel.objects.filter(Product_id__in=recently_viewed_product_ids)
+    # recently_viewed_ids = request.session.get('recently_viewed', [])
+    #
+    # # Fetch the recently viewed products from the database
+    # recently_viewed_products = ProductModel.objects.filter(Product_id__in=recently_viewed_ids)
+
+    username = request.session.get('data')
+
+    # Fetch the recently viewed product IDs associated with the user from the session or cookie
+    recently_viewed_ids = request.session.get(f'recently_viewed_{username}', [])
+
+    # Fetch the recently viewed products from the database
+    recently_viewed_products = ProductModel.objects.filter(Product_id__in=recently_viewed_ids)[:4]
+
+    for category in categories:
+        products = ProductModel.objects.filter(Main_category_id=category.Main_category_id)[:4]
+        category_products.append({'category': category, 'products': products})
+        dataa = MainCategoryModel.objects.all()
+        user = 'no user'
+        if 'data' in request.session:
+            current_user = request.session['data']
+            print(current_user)
+            user = UserModel.objects.get(Username=current_user)
+
+
+
+
+    return render(request, 'Home.html', {'category_products': category_products,'user':user,'categories':dataa,'recently_viewed_products': recently_viewed_products})
 
 
 def Product(request, id):
+    reviews = ReviewRatingModel.objects.filter(Product_id=id)
+
     data = ProductModel.objects.prefetch_related('images').filter(Product_id=id)
     print(data.values())
-    dataa = ReviewRatingModel.objects.filter(Product_id=ProductModel.objects.get(Product_id=id))
+    dataa = ReviewRatingModel.objects.filter(Product_id=ProductModel.objects.get(Product_id=id)).first()
     print(dataa)
+
+
     if request.method == "POST":
         review = request.POST.get('review')
         rating = request.POST.get('rating')
@@ -109,30 +153,88 @@ def Product(request, id):
 
         dataa.User_id = UserModel.objects.get(Username=request.session["data"])
         dataa.Product_id = ProductModel.objects.get(Product_id=id)
+
         dataa.save()
         return redirect(f'/product/{id}')
+    username = request.session.get('data')
 
-    return render(request, "Product.html", {'products': data, 'review': dataa})
+    # Retrieve the recently viewed product IDs associated with the user from the session or cookie
+    recently_viewed_ids = request.session.get(f'recently_viewed_{username}', [])
+
+    # Add the current product ID to the recently viewed list if not already present
+    if id not in recently_viewed_ids:
+        recently_viewed_ids.append(id)
+        # Limit the recently viewed list to a certain length if needed
+        # Ensure you're storing only unique product IDs
+
+    # Update the session or cookies with the updated recently viewed list
+    request.session[f'recently_viewed_{username}'] = recently_viewed_ids
+
+    # Render the product page with the product details
+
+
+    return render(request, "Product.html", {'products': data, 'reviews': reviews})
 
 
 def category(request, id):
     data = ProductModel.objects.prefetch_related('images').filter(Main_category_id=id)
+    dataa = OfferModel.objects.filter(Product_id__in=data.values_list('Product_id', flat=True))
+
 
     print(data.values())
+
 
     if request.method == 'POST':
         search = request.POST.get('search')
         if 'selected_price' in request.POST:
-            print(int(request.POST['selected_price']))
-            data = ProductModel.objects.prefetch_related('images').filter(Price=int(request.POST['selected_price']))
+            selected_price = int(request.POST['selected_price'])
+            data = data.filter(Price__lte=selected_price)
+            return render(request, "Category.html", {'products': data})
         if 'selected_discount' in request.POST:
-            print(int(request.POST['selected_discount']))
-            data = OfferModel.objects.filter(Discount=int(request.POST['selected_discount']))
-        print(data.values())
+            selected_discount = int(request.POST['selected_discount'])
+            dataa = dataa.filter(Discount__lte=selected_discount)
+
+            # Calculate discounted price for each product
+            discounted_products = []
+            for product in data:
+                discounted_price = product.Price - (product.Price * selected_discount / 100)
+                discounted_products.append({'product': product, 'discounted_price': discounted_price})
+
+            return render(request, "Category.html",
+                          {'productss': discounted_products, 'selected_discount': selected_discount})
+
+
 
     return render(request, "Category.html", {'products': data})
 
 
+# def add_to_wishlist(request):
+#     if request.method == 'POST':
+#         product_id = request.POST.get('product_id')
+#         liked = request.POST.get('liked')
+#
+#         # Convert 'liked' to boolean
+#         liked = liked == 'true'
+#
+#         try:
+#             # Check if the product is already in the wishlist
+#             existing_entry = WishlistModel.objects.filter(User_id=request.user, Product_id=product_id).exists()
+#
+#             if liked:
+#                 # If the product is not in the wishlist, add it
+#                 if not existing_entry:
+#                     WishlistModel.objects.create(User_id=request.user, Product_id=product_id)
+#             else:
+#                 # If the product is in the wishlist, remove it
+#                 if existing_entry:
+#                     WishlistModel.objects.filter(User_id=request.user, Product_id=product_id).delete()
+#
+#             return JsonResponse({'success': True})
+#         except Exception as e:
+#             print(e)
+#             return JsonResponse({'success': False, 'error': str(e)})
+#     else:
+#         return JsonResponse({'success': False, 'error': 'Invalid request method'})
 def profile(request):
     if 'data' in request.session:
         print(request.session["data"])
@@ -182,6 +284,10 @@ def offer(request):
     events = OfferEventModel.objects.all()
 
     return render(request, 'offer.html', {'events': events})
+
+# def myhome(request):
+#     home = ProductModel.objects.all()
+#     return render(request, 'Home.html', {'home': home})
 
 
 def brand(requset):
@@ -243,6 +349,8 @@ def mycart(request):
     if 'data' in request.session:
         username = request.session.get('data')
         User_id = UserModel.objects.get(Username=username)
+        mydata = AddressModel.objects.filter(User_id=UserModel.objects.get(Username=username))
+        print(mydata)
 
 
         if request.method == "POST":
@@ -260,23 +368,18 @@ def mycart(request):
                 return render(request, 'mycart.html', {'user_products': usercartdetails})
             else:
                 usercartdetails = CartModel.objects.filter(User_id=User_id)
+                total_price = sum(item.Product_id.Price * item.Quantity for item in usercartdetails)
 
-                return render(request, 'mycart.html', {'user_products': usercartdetails})
+                return render(request, 'mycart.html', {'user_products': usercartdetails,'total_price': total_price,'mydata':mydata})
         else:
             usercartdetails = CartModel.objects.filter(User_id=UserModel.objects.get(Username=username))
 
-            if request.method == 'POST':
-                search = request.POST.get('search')
-                if 'selected_price' in request.POST:
-                    print(int(request.POST['selected_price']))
-                    data = ProductModel.objects.prefetch_related('images').filter(
-                        Price=int(request.POST['selected_price']))
 
             # total_price = usercartdetails.aggregate(
             #     total_price=Sum(F('Product_id__Price') * F('Quantity'), output_field=DecimalField()))['total_price']
             # total_price = total_price or Decimal('0')  # Handle None case
 
-        return render(request, 'mycart.html', {'user_products': usercartdetails,'data':data})
+        return render(request, 'mycart.html', {'user_products': usercartdetails})
     else:
         return redirect('/login')
 
@@ -284,6 +387,43 @@ def mycart(request):
 
 
 def buy(request):
+    if 'data' in request.session:
+        print("aaaaaaaaaaaaaaaaaaaaaa")
+        user = request.session['data']
+        mydata = AddressModel.objects.filter(User_id=UserModel.objects.get(Username=user))
+        print(mydata)
+        username = request.session.get('data')
+        User_id = UserModel.objects.get(Username=username)
+
+        if request.method == "POST":
+            print('aaa')
+
+            quantity = request.POST.get('qua')
+            Product_id = request.POST.get('id')
+            Product_details = ProductModel.objects.get(Product_id=Product_id)
+            if not CartModel.objects.filter(Product_id=Product_details, User_id=User_id).exists():
+
+                cartdata = CartModel(Product_id=Product_details, User_id=User_id, Quantity=quantity)
+
+                usercartdetails = CartModel.objects.filter(User_id=User_id)
+
+                return render(request, 'buy.html', {'buy': usercartdetails})
+            else:
+                usercartdetails = CartModel.objects.filter(User_id=User_id)
+                total_price = sum(item.Product_id.Price * item.Quantity for item in usercartdetails)
+
+                return render(request, 'buy.html', {'buy': usercartdetails, 'total_price': total_price,'mydata':mydata})
+        else:
+            usercartdetails = CartModel.objects.filter(User_id=UserModel.objects.get(Username=username))
+
+            # total_price = usercartdetails.aggregate(
+            #     total_price=Sum(F('Product_id__Price') * F('Quantity'), output_field=DecimalField()))['total_price']
+            # total_price = total_price or Decimal('0')  # Handle None case
+
+        return render(request, 'buy.html.html', {'buy': usercartdetails})
+    else:
+        return redirect('/login')
+
     return render(request, 'Buy.html')
 
 
@@ -399,27 +539,22 @@ def View_brand(request, id):
 #     return JsonResponse({'success': False, 'message': 'Invalid request.'})
 #
 
+
+
 def add_to_wishlist(request):
+    if request.method == 'POST' and request.is_ajax():
+        productId = request.POST.get('productId')
+        wishlistStatus = request.POST.get('wishlistStatus')
 
-    if request.method == 'POST':
-
-        product_id = request.POST.get('product_id')
-        print(f'product : {product_id}')
-
-        if 'data' in request.session:
-            wishlist_item = WishlistModel.objects.filter(User_id=UserModel.objects.get(Username=request.session['data']), Product_id=ProductModel.objects.get(Product_id=product_id))
-
-            if wishlist_item.exists():
-                print('Product already in wishlist.')
-                return JsonResponse({'success': True,'message': 'Product already in wishlist.'})
-            else:
-                print('Product added to wishlist.')
-                wishlist_item = WishlistModel.objects.create(User_id=UserModel.objects.get(Username=request.session['data']), Product_id=ProductModel.objects.get(Product_id=product_id))
-                wishlist_item.save()
-                return JsonResponse({'success': True,'message': 'Product added to wishlist.'})
-
-        # Add the product to the wishlist here
+        # Logic to add/remove the product to/from the wishlist model
         # Example:
-        return JsonResponse({'success': True})
+        # Check if the product is already in the wishlist and toggle it
+        # Add your own logic according to your requirements
+
+        return JsonResponse({'success': True, 'wishlistStatus': 'added/removed'})
     else:
-        return JsonResponse({'success': False})
+        return JsonResponse({'success': False, 'message': 'Invalid request'}, status=400)
+
+def payment(request):
+    return render(request,'Payment.html')
+

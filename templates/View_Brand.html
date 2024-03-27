@@ -9,6 +9,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha384-dfDw0BO6jbY5UBPIe3W7jASzFz5SXM4PoLMT1Z9ZqY4UZqZbVoFFlJ7A/KW1mCiR" crossorigin="anonymous">
         <script src="https://kit.fontawesome.com/8ba53d469b.js" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-rDlOetVpe7bTDCtFyv6Tt3gSfdhXjfvVGmY7SvGnP5NVBhA5+iEHP8UwvGmLeXU1VJPI67DKgh8s/XmNL4Y4cg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
+
+        <script src="https://kit.fontawesome.com/8ba53d469b.js" crossorigin="anonymous"></script>
 <style>
 
 /* Define the custom class for the pista-colored button */
@@ -31,66 +38,108 @@
 }
 
 
-/* Define the animation for the heart icon */
-@keyframes heart {
-    0% {
-        opacity: 0;
-        transform: scale(0);
-    }
-    50% {
-        opacity: 1;
-        transform: scale(1);
-    }
-    100% {
-        opacity: 0;
-        transform: scale(0);
-    }
+.custom-brand .brand-text {
+    font-weight: bold;
+
+}
+.custom-home-link {
+
+     font-style: italic;
+    font-size: 15px;
+    color: #333; /* Adjust color as needed */
+    padding: 10px 15px; /* Adjust padding as needed */
+    background-color: #f8f9fa; /* Adjust background color as needed */
+    border-radius: 5px; /* Adjust border radius as needed */
 }
 
-/* Define the heart animation class */
-.heart-animation {
-    position: absolute;
-    top: -10px;
-    right: 10px;
-    color: #ff3b30; /* Adjust the color of the heart icon */
-    animation: heart 0.8s ease;
+.custom-home-link:hover {
+    background-color: #87CEEB; /* Adjust hover background color as needed */
+    color: #555; /* Adjust hover color as needed */
+
 }
-#myhome{
-  background-color:green;
-  color:white;
-  border-radius:5px;
-  }
-    .carousel-item .col img {
 
-      height: 300px; /* Maintain aspect ratio */
+.custom-brand-link {
 
+    font-size: 15px;
+    color: #333; /* Adjust color as needed */
+    padding: 10px 15px; /* Adjust padding as needed */
+    text-decoration: none; /* Remove underline */
+}
+
+.custom-brand-link:hover {
+       background-color: #87CEEB; /* Adjust hover background color as needed */
+    color: #555; /* Adjust hover color as needed */
     }
-  .container{
-     height:30%;
-     width:80%;
-  }
+.custom-offer-link {
+
+    font-size: 15px;
+    color: #333; /* Adjust color as needed */
+    padding: 10px 15px; /* Adjust padding as needed */
+    text-decoration: none; /* Remove underline */
+}
+
+.custom-offer-link:hover {
+  background-color: #87CEEB; /* Adjust hover background color as needed */
+    color: #555; /* Adjust hover color as needed */
+}
+.cover-text {
+  position: absolute;
+  top: 20%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: black;
+}
+
+.cover-text h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.cover-text p {
+  font-size: 18px;
+}
+    .custom-card {
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .custom-card img {
+     width:100%;
+      border-radius: 15px 15px 0 0;
+    }
+
+    .custom-card .card-body {
+      padding: 20px;
+    }
 </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-     <a class="navbar-brand" href="#">
-      <img src="{% static 'images/logo.jpg' %}" alt="Navbar Logo" height="30" class="d-inline-block align-text-top">
-      ClickCharm
-    </a>
+<nav class="navbar navbar-expand-lg navbar-light bg-white" >
+    <div class="container-fluid" >
+   <a class="navbar-brand custom-brand" href="#">
+    <img src="{% static 'images/cclogo.jpg' %}" alt="Navbar Logo" height="30px" class="d-inline-block align-text-top">
+    <span class="brand-text">ClickCharm</span>
+</a>
+
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#" id="myhome">HOME</a>
-        </li>
+    <a class="nav-link active custom-home-link" aria-current="page" href="#" id="myhome">HOME</a>
+</li>
+
         <li class="nav-item ms-5">
-          <a class="nav-link" href="#">OFFER</a>
-        </li>
+    <a class="nav-link active custom-offer-link" href="/offer">OFFER</a>
+</li>
+
         <li class="nav-item dropdown ms-5">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle custom-brand-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             CATAEGORY
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown" >
@@ -100,21 +149,52 @@
           </ul>
         </li>
         <li class="nav-item ms-5">
-          <a class="nav-link active" href="/profile"  aria-disabled="page">PROFILE</a>
-        </li>
+    <a class="nav-link active custom-brand-link" href="/brand" aria-disabled="page">BRAND</a>
+      </li>
+
+<!--        <li class="nav-item ms-5">-->
+<!--    <a class="nav-link active" href="/profile" aria-disabled="false">-->
+<!--        <i class="fas fa-heart"></i> -->
+<!--    </a>-->
+<!--</li>-->
+
         <li class="nav-item ms-5">
-          <a class="nav-link active" href="/profile"  aria-disabled="page">WISHLIST</a>
-        </li>
-        <li class="nav-item ms-5">
-          <a class="nav-link active" href="/profile"  aria-disabled="page">BAG</a>
-        </li>
+    <a class="nav-link active custom-wishlist-link" href="/profile" aria-disabled="page">
+        <i class="fas fa-heart"></i> <!-- Font Awesome heart icon -->
+    </a>
+</li>
+
+<!--         <li class="nav-item ms-5">-->
+<!--          <a class="nav-link active" href="/profile"  aria-disabled="page">BAG</a>-->
+<!--        </li>-->
+          <li class="nav-item ms-5">
+    <a class="nav-link active" href="/profile" aria-disabled="false">
+        <i class="fas fa-shopping-bag"></i>
+    </a>
+</li>
+
+<li class="nav-item ms-5">
+    <a class="nav-link active" href="/profile" aria-disabled="false">
+        <i class="fas fa-user"></i> <!-- Font Awesome user icon -->
+    </a>
+</li>
+
+
 
       {% if user == 'no use' %}
-         <a class="nav-link" href="/login" style="margin-left:100px">Login</a>
+<!--         <a class="nav-link" href="/login" style="margin-left:100px">Login</a>-->
+          <a class="nav-link" href="/login" style="margin-left:100px; color: black;">
+    <i class="fas fa-user" style="color: black;"></i> Login
+</a>
+
 
           {% else %}
-        <a class="nav-link" href="/logout" style="margin-left:100px">Logout</a>
-          <h5><span style="color:pink;">{{user.Username}}</span></h5>
+<!--        <a class="nav-link" href="/logout" style="margin-left:100px">Logout</a>-->
+          <a class="nav-link active" href="/logout" style="margin-left:100px; color: black;">
+    <i class="fas fa-sign-out-alt" style="color: black;"></i>
+</a>
+
+          <h6 class="user"><span style="color:black;">{{user.Username}}</span></h6>
 
 
 
@@ -126,7 +206,7 @@
       <form class="d-flex mx-auto" method="POST" action="/search/">
         {% csrf_token %}
         <input class="form-control me-2" type="text" name="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <button class="btn btn-outline-secondary" type="submit">Search</button>
       </form>
     </div>
 
@@ -135,46 +215,78 @@
   </div>
 </nav>
 
-  <div class="container">
-<div class="row row-cols-1 row-cols-md-3 g-4">
-  {% for x in data %}
-  <div class="col">
-    <div class="card">
+<div class="container mt-5">
+    <!-- Display category name -->
+    <br>
 
-          {% for image in x.images.all|slice:":1" %}
+    <!-- Display products for the category -->
+    <div class="row">
+      {% for x in data%}
+        <div class="col-md-3">
+          <div class="card mb-4 shadow-sm" >
+              {% for image in x.images.all|slice:":1" %}
 
-      <img src="{{ image.images.url }}" class="card-img-top" height="350px" >
+      <img src="{{ image.images.url }}" class="card-img-top" height="180px" width="100px;" >
 
           {% endfor %}
-      <div class="card-body">
-        <h5 class="card-title">{{x.Product_title}}</h5>
+            <div class="card-body">
+              <h5 class="card-title">{{x.Product_title}}</h5>
         <p class="card-text">{{x.Product_description}}</p>
         <p class="card-text">{{x.Quantity}}</p>
 
         <p class="card-text">{{x.Price}}</p>
 
-
-
-                    <a href="/product/{{ x.Product_id }}"  class="btn btn-success" id="shop" >Shop Now</a>
-        <a href="" class="pista-btn" id="wishlistButton">
-    <button type="submit"> <i class="fa fa-heart-o" aria-hidden="true"></i>  Wishlist</button>
-
-</a>
+              <a href="/product/{{ x.Product_id }}"  class="btn btn-secondary" id="shop" >Shop Now</a>
+        <button class="wishlist-btn" data-product-id="{{ product.Product_id }}" class="fa fa-heart-o"  aria-hidden="true"> Wishlist</button>
 
 
 
-      </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
     </div>
-  </div>
-  <br>
-  <br>
- {% endfor %}
-  <br><br>
-
-
-  </div>
 </div>
-  <br><br>
+<!--  <div class="container">-->
+<!--<div class="row row-cols-1 row-cols-md-3 g-4">-->
+<!--  {% for x in data %}-->
+<!--  <div class="col">-->
+<!--    <div class="card">-->
+
+<!--          {% for image in x.images.all|slice:":1" %}-->
+
+<!--      <img src="{{ image.images.url }}" class="card-img-top" height="350px" >-->
+
+<!--          {% endfor %}-->
+<!--      <div class="card-body">-->
+<!--        <h5 class="card-title">{{x.Product_title}}</h5>-->
+<!--        <p class="card-text">{{x.Product_description}}</p>-->
+<!--        <p class="card-text">{{x.Quantity}}</p>-->
+
+<!--        <p class="card-text">{{x.Price}}</p>-->
+
+
+
+<!--                    <a href="/product/{{ x.Product_id }}"  class="btn btn-success" id="shop" >Shop Now</a>-->
+<!--        <a href="" class="pista-btn" id="wishlistButton">-->
+<!--    <button type="submit"> <i class="fa fa-heart-o" aria-hidden="true"></i>  Wishlist</button>-->
+
+<!--</a>-->
+
+
+
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <br>-->
+<!--  <br>-->
+<!-- {% endfor %}-->
+<!--  <br><br>-->
+
+
+<!--  </div>-->
+<!--</div>-->
+<!--  <br><br>-->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>

@@ -1,293 +1,157 @@
-
-{% load static%}
-
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Font Awesome -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/8ba53d469b.js" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/8ba53d469b.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #FFFFFF;
+            color: #85144B;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            -moz-osx-font-smoothing: grayscale;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
 
-  <title>Document</title>
+        .sidebar {
+            width: 250px;
+            height: 100%;
+            padding: 48px 0;
+            background-color: #f8f9fa;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow-y: auto;
+        }
 
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+            width: calc(100% - 250px);
+        }
 
-<style>
-    /* Custom styles for the sidebar dashboard */
-    .sidebar {
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      z-index: 100;
-      padding: 48px 0;
-      background-color: #f8f9fa;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    }
+        .form-holder {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
 
-    .sidebar .nav-link {
-      color: green;
-    }
+        .form-content {
+            border: 3px solid #85144B;
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 400px;
+            width: 100%;
+        }
 
-    .sidebar .nav-link:hover {
-      color: pink;
-    }
+        .form-content h3 {
+            color: #85144B;
+            text-align: center;
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
 
-    .sidebar .nav-link.active {
-      font-weight: bold;
-    }
+        .form-content p {
+            color: #85144B;
+            text-align: left;
+            font-size: 17px;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
 
-    .content {
-      margin-left: 250px; /* Adjust this value based on the sidebar width */
-      padding: 20px;
-    }
+        .form-content input[type=text],
+        .form-content input[type=password],
+        .form-content input[type=email],
+        .form-content select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
 
-   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap');
+        .form-content .form-button {
+            text-align: center;
+        }
 
-*, body {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    -moz-osx-font-smoothing: grayscale;
-}
+        .form-content .btn-primary {
+            background-color: #85144B;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
 
-html, body {
-    height: 100%;
-    background-color: #152733;
-    overflow: hidden;
-}
-
-
-.form-holder {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      min-height: 100vh;
-}
-
-.form-holder .form-content {
-    position: relative;
-    text-align: center;
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-justify-content: center;
-    justify-content: center;
-    -webkit-align-items: center;
-    align-items: center;
-    padding: 60px;
-}
-
-.form-content .form-items {
-    border: 3px solid #fff;
-    padding: 40px;
-    display: inline-block;
-    width: 100%;
-    min-width: 540px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    text-align: left;
-    -webkit-transition: all 0.4s ease;
-    transition: all 0.4s ease;
-}
-
-.form-content h3 {
-    color: #fff;
-    text-align: left;
-    font-size: 28px;
-    font-weight: 600;
-    margin-bottom: 5px;
-}
-
-.form-content h3.form-title {
-    margin-bottom: 30px;
-}
-
-.form-content p {
-    color: #fff;
-    text-align: left;
-    font-size: 17px;
-    font-weight: 300;
-    line-height: 20px;
-    margin-bottom: 30px;
-}
-
-
-.form-content label, .was-validated .form-check-input:invalid~.form-check-label, .was-validated .form-check-input:valid~.form-check-label{
-    color: #fff;
-}
-
-.form-content input[type=text], .form-content input[type=password], .form-content input[type=email], .form-content select {
-    width: 100%;
-    padding: 9px 20px;
-    text-align: left;
-    border: 0;
-    outline: 0;
-    border-radius: 6px;
-    background-color: #fff;
-    font-size: 15px;
-    font-weight: 300;
-    color: #8D8D8D;
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-    margin-top: 16px;
-}
-
-
-.btn-primary{
-    background-color: #6C757D;
-    outline: none;
-    border: 0px;
-     box-shadow: none;
-}
-
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active{
-    background-color: #495056;
-    outline: none !important;
-    border: none !important;
-     box-shadow: none;
-}
-
-.form-content textarea {
-    position: static !important;
-    width: 100%;
-    padding: 8px 20px;
-    border-radius: 6px;
-    text-align: left;
-    background-color: #fff;
-    border: 0;
-    font-size: 15px;
-    font-weight: 300;
-    color: #8D8D8D;
-    outline: none;
-    resize: none;
-    height: 120px;
-    -webkit-transition: none;
-    transition: none;
-    margin-bottom: 14px;
-}
-
-.form-content textarea:hover, .form-content textarea:focus {
-    border: 0;
-    background-color: #ebeff8;
-    color: #8D8D8D;
-}
-
-.mv-up{
-    margin-top: -9px !important;
-    margin-bottom: 8px !important;
-}
-
-.invalid-feedback{
-    color: #ff606e;
-}
-
-.valid-feedback{
-   color: #2acc80;
-}
-
-
-  </style>
+        .form-content .btn-primary:hover {
+            background-color: #6C757D;
+        }
+    </style>
 </head>
 <body>
 
 <div class="sidebar">
-  <div class="container">
-    <h4 class="mb-4">Dashboard</h4>
-    <ul class="nav flex-column">
-      <li class="nav-item">
-        <a class="nav-link active" href="#profile"><i class="fas fa-user me-2"></i>Profile</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/address"><i class="fas fa-address-card me-2"></i>Address</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#wishlist"><i class="fas fa-heart me-2"></i>Wishlist</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#cart"><i class="fas fa-shopping-cart me-2"></i>Cart</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#logout"><i class="fas fa-sign-out-alt me-2"></i>Logout</a>
-      </li>
-    </ul>
-  </div>
+    <div class="container">
+        <h4 class="mb-4"style="background-color:#85144B; color:#fff; font-size:30px;">ClickCharm</h4>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="/profile" style="color:#85144B; font-size:25px;"><i class="fas fa-user me-2"></i>Profile</a>
+            </li><br>
+            <li class="nav-item">
+                <a class="nav-link" href="/address" style="color:#85144B; font-size:24px;"><i class="fas fa-address-card me-2"></i>Address</a>
+            </li><br>
+            <li class="nav-item">
+                <a class="nav-link" href="#wishlist" style="color:#85144B; font-size:25px;"><i class="fas fa-heart me-2"></i>Wishlist</a>
+            </li><br>
+            <li class="nav-item">
+                <a class="nav-link" href="#cart" style="color:#85144B; font-size:25px;"><i class="fas fa-shopping-cart me-2"></i>Cart</a>
+            </li><br>
+            <li class="nav-item">
+                <a class="nav-link" href="#logout" style="color:#85144B; font-size:25px;"><i class="fas fa-sign-out-alt me-2"></i>Logout</a>
+            </li>
+        </ul>
+    </div>
 </div>
 
-
-<div class="form-body">
-        <div class="row">
-            <div class="form-holder">
-                <div class="form-content">
-                    <div class="form-items">
-                        <h3>Address</h3>
-                        <p>Fill in the data below.</p>
-                        <form method="POST"  >
-                          {% csrf_token %}
-
-
-                            <div class="col-md-12">
-                               <input class="form-control" type="text" name="housename" placeholder="enter housname" required>
-                               <div class="valid-feedback">House_number</div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <input class="form-control" type="text" name="houseno" placeholder="enter house number" required>
-                                 <div class="valid-feedback">House_No</div>
-
-                            </div>
-                            <div class="col-md-12">
-                                <input class="form-control" type="text" name="place" placeholder="enter your place" required>
-                                 <div class="valid-feedback">Place</div>
-
-                            </div>
-                             <div class="col-md-12">
-                                <input class="form-control" type="text" name="post" placeholder="enter your post name" required>
-                                 <div class="valid-feedback"> Post</div>
-
-                            </div>
-                             <div class="col-md-12">
-                                <input class="form-control" type="text" name="pin" placeholder="enter your pin" required>
-                                 <div class="valid-feedback">Pin</div>
-
-                            </div>
-                            <div class="col-md-12">
-                                <input class="form-control" type="text" name="landmark" placeholder="enter your landmark" required>
-                                 <div class="valid-feedback">Landmark</div>
-
-                            </div>
-
-
-
-
-
-
-
-                            <div class="form-button mt-3">
-                                <button type="submit" class="btn btn-success">Register</button>
-                            </div>
-                        </form>
-                    </div>
+<div class="content">
+    <div class="form-holder">
+        <div class="form-content">
+            <h3>Address</h3>
+            <p>Fill in the data below.</p>
+            <form method="POST">
+                {% csrf_token %}
+                <input class="form-control" type="text" name="housename" placeholder="Enter housename" required>
+                <input class="form-control" type="text" name="houseno" placeholder="Enter house number" required>
+                <input class="form-control" type="text" name="place" placeholder="Enter your place" required>
+                <input class="form-control" type="text" name="post" placeholder="Enter your post name" required>
+                <input class="form-control" type="text" name="pin" placeholder="Enter your pin" required>
+                <input class="form-control" type="text" name="landmark" placeholder="Enter your landmark" required>
+                <div class="form-button mt-3">
+                    <button type="submit" class="btn btn-primary">Register</button>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-
-
-
-
-
+</div>
 
 </body>
 </html>

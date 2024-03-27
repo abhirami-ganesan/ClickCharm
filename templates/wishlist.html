@@ -2,9 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist</title>
+    <!-- Add your CSS links here -->
 </head>
 <body>
-
+    <h1>Wishlist</h1>
+    <div id="wishlist-content">
+        <!-- Wishlist items will be dynamically loaded here -->
+        {% for item in wishlist_items %}
+            <div>{{ item.Product_id.Product_title }}</div>
+            <!-- Add more details of the wishlist item as needed -->
+        {% endfor %}
+    </div>
+    <!-- Add your JavaScript links here -->
 </body>
 </html>

@@ -42,28 +42,14 @@ height: 100vh !important;
                   <div>
 <!--                    <p class="mb-0"><span class="text-muted">Sort by:</span> <a href="#!"-->
 <!--                        class="text-body">price <i class="fas fa-angle-down mt-1"></i></a></p>-->
-                      <form method="POST" >
-    {% csrf_token %}
-    <select   name="selected_price"  onchange="this.form.submit()">
-              <option value="#" selected disabled>Price</option>
-                  <option value="300">Under 300</option>
-                  <option value="500">Under 500</option>
-                  <option value="800">Under 800</option>
-                  <option value="1000">Under 1000</option>
-                  <option value="1500">Under 1500</option>
-                  <option value="2500">Under 2000</option>
 
-          </select>
-
-
-  </form>
                   </div>
                 </div>
 
                 <div class="card mb-3">
                   <div class="card-body">
                       {% for product in user_products %}
-                    <div class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-between m-3">
                       <div class="d-flex flex-row align-items-center">
                         {% for image in product.Product_id.images.all|slice:":1" %}
 
@@ -86,6 +72,11 @@ height: 100vh !important;
                         </div>
                         <div style="width: 80px;">
                           <h5 class="mb-0">${{product.Product_id.Price}}</h5>
+                             <div class="d-flex justify-content-between">
+
+    </div>
+
+
                           <a href="/deletecart/{{product.Cart_id}}" style="color: black;"><i class="fas fa-trash-alt"></i></a>
 
 
@@ -229,27 +220,27 @@ height: 100vh !important;
 
                     <div class="d-flex justify-content-between">
                       <p class="mb-2">Subtotal</p>
-                      <p class="mb-2"></p>
+                      <p class="mb-2">{{x.Price}}</p>
                     </div>
 
-                    <div class="d-flex justify-content-between">
-                      <p class="mb-2">Shipping</p>
-                      <p class="mb-2">$20.00</p>
-                    </div>
+<!--                    <div class="d-flex justify-content-between">-->
+<!--                      <p class="mb-2">Shipping</p>-->
+<!--                      <p class="mb-2">$20.00</p>-->
+<!--                    </div>-->
 
                     <div class="d-flex justify-content-between mb-4">
                       <p class="mb-2">Total(Incl. taxes)</p>
-                      <p class="mb-2">$4818.00</p>
+                      <p class="mb-2">Rs. {{ total_price }}</p>
                     </div>
                      <div class="d-flex justify-content-between">
             <h5>Total Price:</h5>
-            <h5>Rs{{total_price }}</h5>
+          <div>Total Price: Rs. {{ total_price }}</div>
         </div>
     </div>
 
-                    <button type="button" class="btn btn-info btn-block btn-lg">
+                    <button type="button" class="btn btn-info btn-block btn-lg" >
                       <div class="d-flex justify-content-between">
-                        <span>$4818.00</span>
+                        <span>Rs. {{ total_price }}</span>
                         <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
                       </div>
                     </button>
